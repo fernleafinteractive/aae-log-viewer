@@ -1,19 +1,19 @@
 import {useState} from "react";
 
+import {getLogTime} from "../log_utils.js";
+
 export default function LogRow({info}) {
     const [showExtra, setShowExtra] = useState(false);
-
-    console.log(info);
 
     return (
         <>
             <div className={"log-row"}>
-                <div>{info.timestamp}</div>
+                <div>{getLogTime(info["data"].timestamp)}</div>
                 <div>{info.log_level}</div>
                 <div>{info.message}</div>
                 <div>...</div>
             </div>
-            <RowExtras params={info.json_params} active={showExtra} />
+            {/*<RowExtras params={info.json_params} active={showExtra} />*/}
         </>
 
     )

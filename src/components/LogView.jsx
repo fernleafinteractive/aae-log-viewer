@@ -1,15 +1,17 @@
 import SAMPLE_LOG from '../../test_data/sample_log_file.json';
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import LogRow from "./LogRow.jsx";
 
-export default function LogView() {
+export default function LogView({logs}) {
 
-    const [logKeys, setLogKeys] = useState(Object.keys(SAMPLE_LOG));
+    useEffect(() => {
+        console.log("view", logs);
+    }, [logs])
 
     return (
         <>
-            {Object.keys(SAMPLE_LOG).map((log, index) => (
-               <LogRow key={index} info={buildInfo(SAMPLE_LOG[log])} />
+            {logs.map((log, index) => (
+               <LogRow key={index} info={log} />
             ))}
         </>
     )
