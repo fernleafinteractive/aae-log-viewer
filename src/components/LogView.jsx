@@ -1,17 +1,16 @@
-import SAMPLE_LOG from '../../test_data/sample_log_file.json';
 import {useEffect, useState} from "react";
-import LogRow from "./LogRow.jsx";
+import LogTaskStatusRow from "./LogTaskStatusRow.jsx";
+import LogDebugRow from "./LogDebugRow.jsx";
 
 export default function LogView({logs}) {
-
-    useEffect(() => {
-        console.log("view", logs);
-    }, [logs])
 
     return (
         <>
             {logs.map((log, index) => (
-               <LogRow key={index} info={log} />
+                log.log_level === 'TASK_STATUS' ?
+                    <LogTaskStatusRow key={index} info={log} />
+                    :
+                    <LogDebugRow key={index} info={log} />
             ))}
         </>
     )
