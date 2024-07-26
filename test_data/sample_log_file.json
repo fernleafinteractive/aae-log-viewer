@@ -1,0 +1,2141 @@
+{
+  "1721835144923330365": {
+    "json_params": {
+      "configuration_index": 0,
+      "task_config": {
+        "input_dataframe_tags": {},
+        "output_tags": [
+          "layer_id=boundary",
+          "source"
+        ],
+        "parameters": {
+          "file_layer": "",
+          "file_path": "inputs/NOMI_Boundary.shp.zip",
+          "geometry_type": "MULTI_POLYGON"
+        },
+        "type": "source_layer"
+      },
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Parsing Task configuration from JSON Array."
+  },
+  "1721835144923386470": {
+    "json_params": {
+      "file_layer": "",
+      "file_path": "inputs/NOMI_Boundary.shp.zip",
+      "geometry_type": "MULTI_POLYGON",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "parseParameters param"
+  },
+  "1721835144923442062": {
+    "json_params": {
+      "parse_source_layer_json": {
+        "file_layer": "",
+        "file_path": "inputs/NOMI_Boundary.shp.zip",
+        "geometry_type": "MULTI_POLYGON"
+      },
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Parsed SourceLayerParameters."
+  },
+  "1721835144924437475": {
+    "json_params": {
+      "file_path": "inputs/NOMI_Boundary.shp.zip",
+      "layer_name": "",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Reading vector file"
+  },
+  "1721835144924813596": {
+    "json_params": {
+      "file_path": "inputs/NOMI_Boundary.shp.zip",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Populated GDAL dataset"
+  },
+  "1721835144924829230": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Convert layer to GeometryDataFrame"
+  },
+  "1721835144931851180": {
+    "json_params": {
+      "timestamp": "1721835144",
+      "wkt": "GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AXIS[\"Latitude\",NORTH],AXIS[\"Longitude\",EAST],AUTHORITY[\"EPSG\",\"4326\"]]"
+    },
+    "log_level": "DEBUG",
+    "message": "Converting input layer to GeometryDataFrame"
+  },
+  "1721835144933311677": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Selecting the correct geometry type."
+  },
+  "1721835144933331537": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Generating a map of layer field values to insert into GeoDataFrame columns later."
+  },
+  "1721835144935173834": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading GeometryDataFrame with column values."
+  },
+  "1721835144935195967": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading Polygon Geometry column values."
+  },
+  "1721835144935222077": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading integer column values."
+  },
+  "1721835144935249893": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading integer64 column values."
+  },
+  "1721835144935261621": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading double column values."
+  },
+  "1721835144935287500": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading string column values."
+  },
+  "1721835144935315149": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Finished converting geometry layer to a GeometryDataFrame."
+  },
+  "1721835144935671903": {
+    "json_params": {
+      "configuration_index": 0,
+      "task_config": {
+        "input_dataframe_tags": {},
+        "output_tags": [
+          "layer_id=boundary",
+          "source"
+        ],
+        "parameters": {
+          "file_layer": "",
+          "file_path": "inputs/NOMI_Boundary.shp.zip",
+          "geometry_type": "MULTI_POLYGON"
+        },
+        "type": "source_layer"
+      },
+      "task_id": "source_layer_93d01a3e2481f9451bec40111a4c819d",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Generated Task from configuration in JSON Array."
+  },
+  "1721835144935751372": {
+    "json_params": {
+      "configuration_index": 1,
+      "task_config": {
+        "input_dataframe_tags": {
+          "input_dataframe_id": [
+            "layer_id=boundary",
+            "source"
+          ]
+        },
+        "output_tags": [
+          "layer_id=boundary",
+          "id_column_only"
+        ],
+        "parameters": {
+          "expressions": [
+            {
+              "name": "id_column=boundary",
+              "query": "SELECT ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) as [id_column=boundary] from queryLayer"
+            }
+          ],
+          "output_columns": {
+            "id_column=boundary": "int"
+          }
+        },
+        "type": "column_expressions"
+      },
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Parsing Task configuration from JSON Array."
+  },
+  "1721835144935795966": {
+    "json_params": {
+      "expressions": [
+        {
+          "name": "id_column=boundary",
+          "query": "SELECT ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) as [id_column=boundary] from queryLayer"
+        }
+      ],
+      "output_columns": {
+        "id_column=boundary": "int"
+      },
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "parseParameters param"
+  },
+  "1721835144935818452": {
+    "json_params": {
+      "timestamp": "1721835144",
+      "total_task_ids": 1
+    },
+    "log_level": "DEBUG",
+    "message": "selectTasksWithAllTags function call."
+  },
+  "1721835144936078505": {
+    "json_params": {
+      "configuration_index": 1,
+      "task_config": {
+        "input_dataframe_tags": {
+          "input_dataframe_id": [
+            "layer_id=boundary",
+            "source"
+          ]
+        },
+        "output_tags": [
+          "layer_id=boundary",
+          "id_column_only"
+        ],
+        "parameters": {
+          "expressions": [
+            {
+              "name": "id_column=boundary",
+              "query": "SELECT ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) as [id_column=boundary] from queryLayer"
+            }
+          ],
+          "output_columns": {
+            "id_column=boundary": "int"
+          }
+        },
+        "type": "column_expressions"
+      },
+      "task_id": "column_expressions_c877359cfee59222450d11f8b29eb822",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Generated Task from configuration in JSON Array."
+  },
+  "1721835144936148215": {
+    "json_params": {
+      "configuration_index": 2,
+      "task_config": {
+        "input_dataframe_tags": {
+          "data_frame_left": [
+            "layer_id=boundary",
+            "source"
+          ],
+          "data_frame_right": [
+            "layer_id=boundary",
+            "id_column_only"
+          ]
+        },
+        "output_tags": [
+          "layer_id=boundary",
+          "id_column=boundary",
+          "source_attributes"
+        ],
+        "parameters": {
+          "allow_duplicate_joins": false,
+          "how": "left",
+          "join_column": ""
+        },
+        "type": "tabular_join"
+      },
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Parsing Task configuration from JSON Array."
+  },
+  "1721835144936185058": {
+    "json_params": {
+      "allow_duplicate_joins": false,
+      "how": "left",
+      "join_column": "",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "parseParameters param"
+  },
+  "1721835144936205678": {
+    "json_params": {
+      "timestamp": "1721835144",
+      "total_task_ids": 1
+    },
+    "log_level": "DEBUG",
+    "message": "selectTasksWithAllTags function call."
+  },
+  "1721835144936227098": {
+    "json_params": {
+      "timestamp": "1721835144",
+      "total_task_ids": 1
+    },
+    "log_level": "DEBUG",
+    "message": "selectTasksWithAllTags function call."
+  },
+  "1721835144936273304": {
+    "json_params": {
+      "allow_duplicate_joins": false,
+      "dataFrameLeftID": "source_layer_93d01a3e2481f9451bec40111a4c819d_output",
+      "dataFrameRightID": "column_expressions_c877359cfee59222450d11f8b29eb822_output",
+      "how": 0,
+      "join_column": "",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Parsed tabular join parameters"
+  },
+  "1721835144936351428": {
+    "json_params": {
+      "join_column": "",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Verifying unique column names"
+  },
+  "1721835144936367754": {
+    "json_params": {
+      "join_column": "",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Verifying unique column names"
+  },
+  "1721835144936574482": {
+    "json_params": {
+      "configuration_index": 2,
+      "task_config": {
+        "input_dataframe_tags": {
+          "data_frame_left": [
+            "layer_id=boundary",
+            "source"
+          ],
+          "data_frame_right": [
+            "layer_id=boundary",
+            "id_column_only"
+          ]
+        },
+        "output_tags": [
+          "layer_id=boundary",
+          "id_column=boundary",
+          "source_attributes"
+        ],
+        "parameters": {
+          "allow_duplicate_joins": false,
+          "how": "left",
+          "join_column": ""
+        },
+        "type": "tabular_join"
+      },
+      "task_id": "tabular_join_7f49e0cba2f300f5449f1d3e8d947e8d",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Generated Task from configuration in JSON Array."
+  },
+  "1721835144936639845": {
+    "json_params": {
+      "configuration_index": 3,
+      "task_config": {
+        "input_dataframe_tags": {
+          "input_dataframe_id": [
+            "layer_id=boundary",
+            "id_column=boundary",
+            "source_attributes"
+          ]
+        },
+        "output_tags": [
+          "layer_id=boundary",
+          "id_column=boundary",
+          "only_geometry"
+        ],
+        "parameters": {
+          "error_missing_columns": true,
+          "retain_geometry": true,
+          "subset_columns": [
+            "id_column=boundary"
+          ]
+        },
+        "type": "modify_columns"
+      },
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Parsing Task configuration from JSON Array."
+  },
+  "1721835144936676077": {
+    "json_params": {
+      "error_missing_columns": true,
+      "retain_geometry": true,
+      "subset_columns": [
+        "id_column=boundary"
+      ],
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "parseParameters param"
+  },
+  "1721835144936695026": {
+    "json_params": {
+      "timestamp": "1721835144",
+      "total_task_ids": 1
+    },
+    "log_level": "DEBUG",
+    "message": "selectTasksWithAllTags function call."
+  },
+  "1721835144936771413": {
+    "json_params": {
+      "task_type": "modify_columns",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "No exclude_columns found for tabular_join_7f49e0cba2f300f5449f1d3e8d947e8d_output, using default of no columns"
+  },
+  "1721835144936794041": {
+    "json_params": {
+      "task_type": "modify_columns",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "No rename_columns found for tabular_join_7f49e0cba2f300f5449f1d3e8d947e8d_output, using default of no columns"
+  },
+  "1721835144937145258": {
+    "json_params": {
+      "configuration_index": 3,
+      "task_config": {
+        "input_dataframe_tags": {
+          "input_dataframe_id": [
+            "layer_id=boundary",
+            "id_column=boundary",
+            "source_attributes"
+          ]
+        },
+        "output_tags": [
+          "layer_id=boundary",
+          "id_column=boundary",
+          "only_geometry"
+        ],
+        "parameters": {
+          "error_missing_columns": true,
+          "retain_geometry": true,
+          "subset_columns": [
+            "id_column=boundary"
+          ]
+        },
+        "type": "modify_columns"
+      },
+      "task_id": "modify_columns_d4a411c197456104c225374eeb20e0d6",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Generated Task from configuration in JSON Array."
+  },
+  "1721835144937208267": {
+    "json_params": {
+      "configuration_index": 4,
+      "task_config": {
+        "input_dataframe_tags": {
+          "input_dataframe_id": [
+            "layer_id=boundary",
+            "id_column=boundary",
+            "source_attributes"
+          ]
+        },
+        "output_tags": [
+          "layer_id=boundary",
+          "id_column=boundary",
+          "non_geometry_attributes"
+        ],
+        "parameters": {
+          "error_missing_columns": true,
+          "retain_geometry": false
+        },
+        "type": "modify_columns"
+      },
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Parsing Task configuration from JSON Array."
+  },
+  "1721835144937240600": {
+    "json_params": {
+      "error_missing_columns": true,
+      "retain_geometry": false,
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "parseParameters param"
+  },
+  "1721835144937258423": {
+    "json_params": {
+      "timestamp": "1721835144",
+      "total_task_ids": 1
+    },
+    "log_level": "DEBUG",
+    "message": "selectTasksWithAllTags function call."
+  },
+  "1721835144937285955": {
+    "json_params": {
+      "task_type": "modify_columns",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "No subset_columns found for tabular_join_7f49e0cba2f300f5449f1d3e8d947e8d_output, using default of all columns"
+  },
+  "1721835144937304006": {
+    "json_params": {
+      "task_type": "modify_columns",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "No exclude_columns found for tabular_join_7f49e0cba2f300f5449f1d3e8d947e8d_output, using default of no columns"
+  },
+  "1721835144937321658": {
+    "json_params": {
+      "task_type": "modify_columns",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "No rename_columns found for tabular_join_7f49e0cba2f300f5449f1d3e8d947e8d_output, using default of no columns"
+  },
+  "1721835144937722984": {
+    "json_params": {
+      "configuration_index": 4,
+      "task_config": {
+        "input_dataframe_tags": {
+          "input_dataframe_id": [
+            "layer_id=boundary",
+            "id_column=boundary",
+            "source_attributes"
+          ]
+        },
+        "output_tags": [
+          "layer_id=boundary",
+          "id_column=boundary",
+          "non_geometry_attributes"
+        ],
+        "parameters": {
+          "error_missing_columns": true,
+          "retain_geometry": false
+        },
+        "type": "modify_columns"
+      },
+      "task_id": "modify_columns_6b27defd7ad455bf2b9e0d6074ba2447",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Generated Task from configuration in JSON Array."
+  },
+  "1721835144937783524": {
+    "json_params": {
+      "configuration_index": 5,
+      "task_config": {
+        "input_dataframe_tags": {
+          "input_dataframe_id": [
+            "layer_id=boundary",
+            "id_column=boundary",
+            "only_geometry"
+          ]
+        },
+        "output_tags": [
+          "layer_id=boundary",
+          "id_column=boundary",
+          "project_srs"
+        ],
+        "parameters": {
+          "epsg": 4326
+        },
+        "type": "reproject"
+      },
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Parsing Task configuration from JSON Array."
+  },
+  "1721835144937814083": {
+    "json_params": {
+      "epsg": 4326,
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "parseParameters param"
+  },
+  "1721835144937831265": {
+    "json_params": {
+      "timestamp": "1721835144",
+      "total_task_ids": 1
+    },
+    "log_level": "DEBUG",
+    "message": "selectTasksWithAllTags function call."
+  },
+  "1721835144938707577": {
+    "json_params": {
+      "epsg": 4326,
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Found EPSG code for ReprojectParameters."
+  },
+  "1721835144938819483": {
+    "json_params": {
+      "configuration_index": 5,
+      "task_config": {
+        "input_dataframe_tags": {
+          "input_dataframe_id": [
+            "layer_id=boundary",
+            "id_column=boundary",
+            "only_geometry"
+          ]
+        },
+        "output_tags": [
+          "layer_id=boundary",
+          "id_column=boundary",
+          "project_srs"
+        ],
+        "parameters": {
+          "epsg": 4326
+        },
+        "type": "reproject"
+      },
+      "task_id": "modify_columns_d4a411c197456104c225374eeb20e0d6",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Generated Task from configuration in JSON Array."
+  },
+  "1721835144938896015": {
+    "json_params": {
+      "configuration_index": 6,
+      "task_config": {
+        "input_dataframe_tags": {
+          "data_frame_left": [
+            "layer_id=boundary",
+            "id_column=boundary",
+            "project_srs"
+          ],
+          "data_frame_right": [
+            "layer_id=boundary",
+            "id_column=boundary",
+            "non_geometry_attributes"
+          ]
+        },
+        "output_tags": [
+          "fields_filtered",
+          "geometry_processed",
+          "id_column=boundary",
+          "layer_id=boundary",
+          "normalized=boundary"
+        ],
+        "parameters": {
+          "allow_duplicate_joins": false,
+          "how": "left",
+          "join_column": "id_column=boundary"
+        },
+        "type": "tabular_join"
+      },
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Parsing Task configuration from JSON Array."
+  },
+  "1721835144938939846": {
+    "json_params": {
+      "allow_duplicate_joins": false,
+      "how": "left",
+      "join_column": "id_column=boundary",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "parseParameters param"
+  },
+  "1721835144938960377": {
+    "json_params": {
+      "timestamp": "1721835144",
+      "total_task_ids": 1
+    },
+    "log_level": "DEBUG",
+    "message": "selectTasksWithAllTags function call."
+  },
+  "1721835144938986952": {
+    "json_params": {
+      "timestamp": "1721835144",
+      "total_task_ids": 1
+    },
+    "log_level": "DEBUG",
+    "message": "selectTasksWithAllTags function call."
+  },
+  "1721835144939034188": {
+    "json_params": {
+      "allow_duplicate_joins": false,
+      "dataFrameLeftID": "modify_columns_d4a411c197456104c225374eeb20e0d6_output",
+      "dataFrameRightID": "modify_columns_6b27defd7ad455bf2b9e0d6074ba2447_output",
+      "how": 0,
+      "join_column": "id_column=boundary",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Parsed tabular join parameters"
+  },
+  "1721835144939109745": {
+    "json_params": {
+      "join_column": "id_column=boundary",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Verifying unique column names"
+  },
+  "1721835144939129282": {
+    "json_params": {
+      "join_column": "id_column=boundary",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Verifying unique column names"
+  },
+  "1721835144939365375": {
+    "json_params": {
+      "configuration_index": 6,
+      "task_config": {
+        "input_dataframe_tags": {
+          "data_frame_left": [
+            "layer_id=boundary",
+            "id_column=boundary",
+            "project_srs"
+          ],
+          "data_frame_right": [
+            "layer_id=boundary",
+            "id_column=boundary",
+            "non_geometry_attributes"
+          ]
+        },
+        "output_tags": [
+          "fields_filtered",
+          "geometry_processed",
+          "id_column=boundary",
+          "layer_id=boundary",
+          "normalized=boundary"
+        ],
+        "parameters": {
+          "allow_duplicate_joins": false,
+          "how": "left",
+          "join_column": "id_column=boundary"
+        },
+        "type": "tabular_join"
+      },
+      "task_id": "tabular_join_e5aa9c801a35535db7c9e7e9965ab351",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Generated Task from configuration in JSON Array."
+  },
+  "1721835144939433989": {
+    "json_params": {
+      "configuration_index": 7,
+      "task_config": {
+        "input_dataframe_tags": {
+          "input_dataframe_id": [
+            "layer_id=boundary",
+            "normalized=boundary"
+          ]
+        },
+        "output_tags": [
+          "layer_id=boundary",
+          "id_column=boundary",
+          "file_export"
+        ],
+        "parameters": {
+          "output_path": "data/normalized_layers/boundary.gpkg"
+        },
+        "type": "file_export"
+      },
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Parsing Task configuration from JSON Array."
+  },
+  "1721835144939465344": {
+    "json_params": {
+      "output_path": "data/normalized_layers/boundary.gpkg",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "parseParameters param"
+  },
+  "1721835144939483042": {
+    "json_params": {
+      "timestamp": "1721835144",
+      "total_task_ids": 1
+    },
+    "log_level": "DEBUG",
+    "message": "selectTasksWithAllTags function call."
+  },
+  "1721835144939532814": {
+    "json_params": {
+      "parse_file_export_json": {
+        "file_layer": "",
+        "input_dataframe_id": "tabular_join_e5aa9c801a35535db7c9e7e9965ab351_output",
+        "output_path": "229b9096ba4f1131106867ce5060472b"
+      },
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Parsed FileExportParameters."
+  },
+  "1721835144939664128": {
+    "json_params": {
+      "configuration_index": 7,
+      "task_config": {
+        "input_dataframe_tags": {
+          "input_dataframe_id": [
+            "layer_id=boundary",
+            "normalized=boundary"
+          ]
+        },
+        "output_tags": [
+          "layer_id=boundary",
+          "id_column=boundary",
+          "file_export"
+        ],
+        "parameters": {
+          "output_path": "data/normalized_layers/boundary.gpkg"
+        },
+        "type": "file_export"
+      },
+      "task_id": "file_export_0748552da00a186c9c3825b3b3ee6aeb",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Generated Task from configuration in JSON Array."
+  },
+  "1721835144939716376": {
+    "json_params": {
+      "configuration_index": 8,
+      "task_config": {
+        "input_dataframe_tags": {},
+        "output_tags": [
+          "layer_id=parcels",
+          "source"
+        ],
+        "parameters": {
+          "file_layer": "",
+          "file_path": "inputs/Property_Boundary_View.shp.zip",
+          "geometry_type": "MULTI_POLYGON"
+        },
+        "type": "source_layer"
+      },
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Parsing Task configuration from JSON Array."
+  },
+  "1721835144939746949": {
+    "json_params": {
+      "file_layer": "",
+      "file_path": "inputs/Property_Boundary_View.shp.zip",
+      "geometry_type": "MULTI_POLYGON",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "parseParameters param"
+  },
+  "1721835144939781678": {
+    "json_params": {
+      "parse_source_layer_json": {
+        "file_layer": "",
+        "file_path": "inputs/Property_Boundary_View.shp.zip",
+        "geometry_type": "MULTI_POLYGON"
+      },
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Parsed SourceLayerParameters."
+  },
+  "1721835144939871470": {
+    "json_params": {
+      "configuration_index": 8,
+      "exception": "Error while reading in file for computeHash",
+      "task_config": {
+        "input_dataframe_tags": {},
+        "output_tags": [
+          "layer_id=parcels",
+          "source"
+        ],
+        "parameters": {
+          "file_layer": "",
+          "file_path": "inputs/Property_Boundary_View.shp.zip",
+          "geometry_type": "MULTI_POLYGON"
+        },
+        "type": "source_layer"
+      },
+      "timestamp": "1721835144"
+    },
+    "log_level": "ERROR",
+    "message": "Failed to parse task configuration from JSON Array."
+  },
+  "1721835144939968860": {
+    "json_params": {
+      "failFast": true,
+      "task_config": "/home/shayan/CLionProjects/acceladaptcpp/test/test_data/test_configuration_2.json",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Task config set."
+  },
+  "1721835144940310037": {
+    "json_params": {
+      "outputPath": "tasks_graph.json",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Wrote output task graph JSON to \"tasks_graph.json\"."
+  },
+  "1721835144940330308": {
+    "json_params": {
+      "timestamp": "1721835144",
+      "total_task_ids": 7
+    },
+    "log_level": "DEBUG",
+    "message": "selectTasksWithAllTags function call."
+  },
+  "1721835144940358537": {
+    "json_params": {
+      "tasksSelected": [
+        "tabular_join_e5aa9c801a35535db7c9e7e9965ab351",
+        "modify_columns_6b27defd7ad455bf2b9e0d6074ba2447",
+        "modify_columns_d4a411c197456104c225374eeb20e0d6",
+        "tabular_join_7f49e0cba2f300f5449f1d3e8d947e8d",
+        "file_export_0748552da00a186c9c3825b3b3ee6aeb",
+        "column_expressions_c877359cfee59222450d11f8b29eb822",
+        "source_layer_93d01a3e2481f9451bec40111a4c819d"
+      ],
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Tasks to be executed."
+  },
+  "1721835144940599635": {
+    "json_params": {
+      "cache_path": "./cache/tabular_join_e5aa9c801a35535db7c9e7e9965ab351_output.gpkg.meta.json",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "SimpleJSONCache loaded file from cache."
+  },
+  "1721835144940804909": {
+    "json_params": {
+      "cache_path": "./cache/modify_columns_6b27defd7ad455bf2b9e0d6074ba2447_output.gpkg.meta.json",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "SimpleJSONCache loaded file from cache."
+  },
+  "1721835144941009846": {
+    "json_params": {
+      "cache_path": "./cache/modify_columns_d4a411c197456104c225374eeb20e0d6_output.gpkg.meta.json",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "SimpleJSONCache loaded file from cache."
+  },
+  "1721835144941214576": {
+    "json_params": {
+      "cache_path": "./cache/tabular_join_7f49e0cba2f300f5449f1d3e8d947e8d_output.gpkg.meta.json",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "SimpleJSONCache loaded file from cache."
+  },
+  "1721835144941588791": {
+    "json_params": {
+      "cache_path": "./cache/column_expressions_c877359cfee59222450d11f8b29eb822_output.gpkg.meta.json",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "SimpleJSONCache loaded file from cache."
+  },
+  "1721835144941794638": {
+    "json_params": {
+      "cache_path": "./cache/source_layer_93d01a3e2481f9451bec40111a4c819d_output.gpkg.meta.json",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "SimpleJSONCache loaded file from cache."
+  },
+  "1721835144941981074": {
+    "json_params": {
+      "event_type": "TaskStarted",
+      "task_id": "source_layer_93d01a3e2481f9451bec40111a4c819d",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Task Started"
+  },
+  "1721835144942145215": {
+    "json_params": {
+      "data_frame_id": "source_layer_93d01a3e2481f9451bec40111a4c819d_output",
+      "task_id": "source_layer_93d01a3e2481f9451bec40111a4c819d",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Starting source_layer."
+  },
+  "1721835144942166182": {
+    "json_params": {
+      "file_path": "inputs/NOMI_Boundary.shp.zip",
+      "layer_name": "",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Reading vector file"
+  },
+  "1721835144942333937": {
+    "json_params": {
+      "file_path": "inputs/NOMI_Boundary.shp.zip",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Populated GDAL dataset"
+  },
+  "1721835144942349645": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Convert layer to GeometryDataFrame"
+  },
+  "1721835144942794438": {
+    "json_params": {
+      "timestamp": "1721835144",
+      "wkt": "GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AXIS[\"Latitude\",NORTH],AXIS[\"Longitude\",EAST],AUTHORITY[\"EPSG\",\"4326\"]]"
+    },
+    "log_level": "DEBUG",
+    "message": "Converting input layer to GeometryDataFrame"
+  },
+  "1721835144943505895": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Selecting the correct geometry type."
+  },
+  "1721835144943526391": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Generating a map of layer field values to insert into GeoDataFrame columns later."
+  },
+  "1721835144945096131": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading GeometryDataFrame with column values."
+  },
+  "1721835144945115199": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading Polygon Geometry column values."
+  },
+  "1721835144945136520": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading integer column values."
+  },
+  "1721835144945161883": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading integer64 column values."
+  },
+  "1721835144945174447": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading double column values."
+  },
+  "1721835144945193599": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading string column values."
+  },
+  "1721835144945220184": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Finished converting geometry layer to a GeometryDataFrame."
+  },
+  "1721835144945245155": {
+    "json_params": {
+      "data_frame_id": "source_layer_93d01a3e2481f9451bec40111a4c819d_output",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loaded DataFrame for DataFramePackage source_layer_93d01a3e2481f9451bec40111a4c819d_output"
+  },
+  "1721835144945387826": {
+    "json_params": {
+      "data_frame_id": "source_layer_93d01a3e2481f9451bec40111a4c819d_output",
+      "input_path": "inputs/NOMI_Boundary.shp.zip",
+      "layer": "",
+      "task_id": "source_layer_93d01a3e2481f9451bec40111a4c819d",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Finished source_layer task."
+  },
+  "1721835144945416609": {
+    "json_params": {
+      "event_type": "TaskComplete",
+      "task_id": "source_layer_93d01a3e2481f9451bec40111a4c819d",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Task Complete"
+  },
+  "1721835144951426539": {
+    "json_params": {
+      "cache_path": "./cache/source_layer_93d01a3e2481f9451bec40111a4c819d_output.gpkg.meta.json",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Saved file to cache."
+  },
+  "1721835144951963309": {
+    "json_params": {
+      "event_type": "TaskStarted",
+      "task_id": "column_expressions_c877359cfee59222450d11f8b29eb822",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Task Started"
+  },
+  "1721835144952062132": {
+    "json_params": {
+      "data_frame_id": "column_expressions_c877359cfee59222450d11f8b29eb822_output",
+      "task_id": "column_expressions_c877359cfee59222450d11f8b29eb822",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Starting column expression execution"
+  },
+  "1721835144952118770": {
+    "json_params": {
+      "dataset_name": "./cache/column_expressions_c877359cfee59222450d11f8b29eb822_temp_sql_dataset.gpkg",
+      "layer_name": "queryLayer",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Converting DataFrame to a GDAL Dataset"
+  },
+  "1721835144953023514": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Converting columns into layer fields"
+  },
+  "1721835144953073777": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Populating layer features with new fields"
+  },
+  "1721835144953500932": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Finished converting from DataFrame to GDAL Dataset"
+  },
+  "1721835144953530945": {
+    "json_params": {
+      "query": "SELECT ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) as [id_column=boundary] from queryLayer",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Executing query"
+  },
+  "1721835144954386444": {
+    "json_params": {
+      "query": "SELECT ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) as [id_column=boundary] from queryLayer",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Executed query successfully"
+  },
+  "1721835144955829658": {
+    "json_params": {
+      "query": "SELECT ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) as [id_column=boundary] from queryLayer",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Copied results from query into a temporary layer"
+  },
+  "1721835144955849410": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Finished executing all queries"
+  },
+  "1721835144955862544": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Converting layer into DataFrame."
+  },
+  "1721835144955877543": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Generating a map of layer field values to insert into DataFrame columns later."
+  },
+  "1721835144955936844": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Generating DataFrame columns and loading them with mapped values."
+  },
+  "1721835144955948502": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading integer column values."
+  },
+  "1721835144955967705": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading integer64 column values."
+  },
+  "1721835144955978794": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading double column values."
+  },
+  "1721835144955992791": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading string column values."
+  },
+  "1721835144956005946": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Finished converting from layer to DataFrame."
+  },
+  "1721835144956319849": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Converted output layer to a StandardDataFrame"
+  },
+  "1721835144956427843": {
+    "json_params": {
+      "data_frame_id": "column_expressions_c877359cfee59222450d11f8b29eb822_output",
+      "task_id": "column_expressions_c877359cfee59222450d11f8b29eb822",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Finished column expression execution"
+  },
+  "1721835144956480017": {
+    "json_params": {
+      "data_frame_id": "column_expressions_c877359cfee59222450d11f8b29eb822_output",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loaded DataFrame for DataFramePackage column_expressions_c877359cfee59222450d11f8b29eb822_output"
+  },
+  "1721835144956557560": {
+    "json_params": {
+      "data_frame_id": "column_expressions_c877359cfee59222450d11f8b29eb822_output",
+      "task_id": "column_expressions_c877359cfee59222450d11f8b29eb822",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Finished column_expressions task"
+  },
+  "1721835144956589556": {
+    "json_params": {
+      "data_frame_id": "source_layer_93d01a3e2481f9451bec40111a4c819d_output",
+      "task_id": "column_expressions_c877359cfee59222450d11f8b29eb822",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Removed taskID column_expressions_c877359cfee59222450d11f8b29eb822 from dependentTasks of DataFramePackage source_layer_93d01a3e2481f9451bec40111a4c819d_output"
+  },
+  "1721835144956630266": {
+    "json_params": {
+      "data_frame_id": "source_layer_93d01a3e2481f9451bec40111a4c819d_output",
+      "task_id": "column_expressions_c877359cfee59222450d11f8b29eb822",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "unloaded DataFrame source_layer_93d01a3e2481f9451bec40111a4c819d_output with taskID column_expressions_c877359cfee59222450d11f8b29eb822 being the last task"
+  },
+  "1721835144956651024": {
+    "json_params": {
+      "event_type": "TaskComplete",
+      "task_id": "column_expressions_c877359cfee59222450d11f8b29eb822",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Task Complete"
+  },
+  "1721835144956743617": {
+    "json_params": {
+      "file_path": "./cache/column_expressions_c877359cfee59222450d11f8b29eb822_output.gpkg",
+      "layer_name": "",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Save DataFrame to file"
+  },
+  "1721835144958991762": {
+    "json_params": {
+      "cache_path": "./cache/column_expressions_c877359cfee59222450d11f8b29eb822_output.gpkg.meta.json",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Saved file to cache."
+  },
+  "1721835144959534218": {
+    "json_params": {
+      "event_type": "TaskStarted",
+      "task_id": "file_export_0748552da00a186c9c3825b3b3ee6aeb",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Task Started"
+  },
+  "1721835144959551067": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "ERROR",
+    "message": "DataFramePackage is not loaded for file_export_0748552da00a186c9c3825b3b3ee6aeb's input tabular_join_e5aa9c801a35535db7c9e7e9965ab351_output"
+  },
+  "1721835144959896966": {
+    "json_params": {
+      "file_path": "./cache/tabular_join_e5aa9c801a35535db7c9e7e9965ab351_output.gpkg",
+      "layer_name": "",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Reading vector file"
+  },
+  "1721835144960632517": {
+    "json_params": {
+      "file_path": "./cache/tabular_join_e5aa9c801a35535db7c9e7e9965ab351_output.gpkg",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Populated GDAL dataset"
+  },
+  "1721835144960649021": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Convert layer to GeometryDataFrame"
+  },
+  "1721835144961083422": {
+    "json_params": {
+      "timestamp": "1721835144",
+      "wkt": "GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AXIS[\"Latitude\",NORTH],AXIS[\"Longitude\",EAST],AUTHORITY[\"EPSG\",\"4326\"]]"
+    },
+    "log_level": "DEBUG",
+    "message": "Converting input layer to GeometryDataFrame"
+  },
+  "1721835144961828864": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Selecting the correct geometry type."
+  },
+  "1721835144961847839": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Generating a map of layer field values to insert into GeoDataFrame columns later."
+  },
+  "1721835144964007744": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading GeometryDataFrame with column values."
+  },
+  "1721835144964026381": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading Polygon Geometry column values."
+  },
+  "1721835144964047571": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading integer column values."
+  },
+  "1721835144964072286": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading integer64 column values."
+  },
+  "1721835144964085054": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading double column values."
+  },
+  "1721835144964106166": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading string column values."
+  },
+  "1721835144964133818": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Finished converting geometry layer to a GeometryDataFrame."
+  },
+  "1721835144964163851": {
+    "json_params": {
+      "cache_path": "./cache/tabular_join_e5aa9c801a35535db7c9e7e9965ab351_output.gpkg",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loaded cache."
+  },
+  "1721835144964182388": {
+    "json_params": {
+      "cache_path": "./cache/tabular_join_e5aa9c801a35535db7c9e7e9965ab351_output.gpkg",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "HashVerifiedCache loaded file from cache."
+  },
+  "1721835144964274704": {
+    "json_params": {
+      "data_frame_id": "file_export_0748552da00a186c9c3825b3b3ee6aeb_output",
+      "task_id": "file_export_0748552da00a186c9c3825b3b3ee6aeb",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Starting file_export."
+  },
+  "1721835144964576775": {
+    "json_params": {
+      "event_type": "TaskFailed",
+      "exception": "Failed to create dataset.",
+      "task_id": "file_export_0748552da00a186c9c3825b3b3ee6aeb",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Task Failed"
+  },
+  "1721835144964800298": {
+    "json_params": {
+      "event_type": "TaskStarted",
+      "task_id": "tabular_join_7f49e0cba2f300f5449f1d3e8d947e8d",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Task Started"
+  },
+  "1721835144964818218": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "ERROR",
+    "message": "DataFramePackage is not loaded for tabular_join_7f49e0cba2f300f5449f1d3e8d947e8d's input source_layer_93d01a3e2481f9451bec40111a4c819d_output"
+  },
+  "1721835144965179393": {
+    "json_params": {
+      "file_path": "./cache/source_layer_93d01a3e2481f9451bec40111a4c819d_output.gpkg",
+      "layer_name": "",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Reading vector file"
+  },
+  "1721835144965898375": {
+    "json_params": {
+      "file_path": "./cache/source_layer_93d01a3e2481f9451bec40111a4c819d_output.gpkg",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Populated GDAL dataset"
+  },
+  "1721835144965917560": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Convert layer to GeometryDataFrame"
+  },
+  "1721835144966247340": {
+    "json_params": {
+      "timestamp": "1721835144",
+      "wkt": "GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AXIS[\"Latitude\",NORTH],AXIS[\"Longitude\",EAST],AUTHORITY[\"EPSG\",\"4326\"]]"
+    },
+    "log_level": "DEBUG",
+    "message": "Converting input layer to GeometryDataFrame"
+  },
+  "1721835144966913164": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Selecting the correct geometry type."
+  },
+  "1721835144966932602": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Generating a map of layer field values to insert into GeoDataFrame columns later."
+  },
+  "1721835144969077901": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading GeometryDataFrame with column values."
+  },
+  "1721835144969097009": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading Polygon Geometry column values."
+  },
+  "1721835144969116443": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading integer column values."
+  },
+  "1721835144969137368": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading integer64 column values."
+  },
+  "1721835144969149017": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading double column values."
+  },
+  "1721835144969168249": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading string column values."
+  },
+  "1721835144969195010": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Finished converting geometry layer to a GeometryDataFrame."
+  },
+  "1721835144969220058": {
+    "json_params": {
+      "cache_path": "./cache/source_layer_93d01a3e2481f9451bec40111a4c819d_output.gpkg",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loaded cache."
+  },
+  "1721835144969238360": {
+    "json_params": {
+      "cache_path": "./cache/source_layer_93d01a3e2481f9451bec40111a4c819d_output.gpkg",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "HashVerifiedCache loaded file from cache."
+  },
+  "1721835144969359490": {
+    "json_params": {
+      "data_frame_id": "tabular_join_7f49e0cba2f300f5449f1d3e8d947e8d_output",
+      "task_id": "tabular_join_7f49e0cba2f300f5449f1d3e8d947e8d",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Starting tabular_join."
+  },
+  "1721835144969375755": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Start function: joinByIndex"
+  },
+  "1721835144969390475": {
+    "json_params": {
+      "join_column": "",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Verifying unique column names"
+  },
+  "1721835144969455831": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Finish function: joinByIndex"
+  },
+  "1721835144969515803": {
+    "json_params": {
+      "data_frame_id": "tabular_join_7f49e0cba2f300f5449f1d3e8d947e8d_output",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loaded DataFrame for DataFramePackage tabular_join_7f49e0cba2f300f5449f1d3e8d947e8d_output"
+  },
+  "1721835144969613235": {
+    "json_params": {
+      "data_frame_id": "tabular_join_7f49e0cba2f300f5449f1d3e8d947e8d_output",
+      "task_id": "tabular_join_7f49e0cba2f300f5449f1d3e8d947e8d",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Finished tabular_join task."
+  },
+  "1721835144969646782": {
+    "json_params": {
+      "data_frame_id": "source_layer_93d01a3e2481f9451bec40111a4c819d_output",
+      "task_id": "tabular_join_7f49e0cba2f300f5449f1d3e8d947e8d",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Removed taskID tabular_join_7f49e0cba2f300f5449f1d3e8d947e8d from dependentTasks of DataFramePackage source_layer_93d01a3e2481f9451bec40111a4c819d_output"
+  },
+  "1721835144969668850": {
+    "json_params": {
+      "data_frame_id": "column_expressions_c877359cfee59222450d11f8b29eb822_output",
+      "task_id": "tabular_join_7f49e0cba2f300f5449f1d3e8d947e8d",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Removed taskID tabular_join_7f49e0cba2f300f5449f1d3e8d947e8d from dependentTasks of DataFramePackage column_expressions_c877359cfee59222450d11f8b29eb822_output"
+  },
+  "1721835144969693844": {
+    "json_params": {
+      "data_frame_id": "column_expressions_c877359cfee59222450d11f8b29eb822_output",
+      "task_id": "tabular_join_7f49e0cba2f300f5449f1d3e8d947e8d",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "unloaded DataFrame column_expressions_c877359cfee59222450d11f8b29eb822_output with taskID tabular_join_7f49e0cba2f300f5449f1d3e8d947e8d being the last task"
+  },
+  "1721835144969713636": {
+    "json_params": {
+      "event_type": "TaskComplete",
+      "task_id": "tabular_join_7f49e0cba2f300f5449f1d3e8d947e8d",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Task Complete"
+  },
+  "1721835144972925685": {
+    "json_params": {
+      "cache_path": "./cache/tabular_join_7f49e0cba2f300f5449f1d3e8d947e8d_output.gpkg.meta.json",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Saved file to cache."
+  },
+  "1721835144973473688": {
+    "json_params": {
+      "event_type": "TaskStarted",
+      "task_id": "modify_columns_d4a411c197456104c225374eeb20e0d6",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Task Started"
+  },
+  "1721835144973613374": {
+    "json_params": {
+      "data_frame_id": "modify_columns_d4a411c197456104c225374eeb20e0d6_output",
+      "task_id": "modify_columns_d4a411c197456104c225374eeb20e0d6",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Starting modify_columns."
+  },
+  "1721835144973733410": {
+    "json_params": {
+      "data_frame_id": "modify_columns_d4a411c197456104c225374eeb20e0d6_output",
+      "task_id": "modify_columns_d4a411c197456104c225374eeb20e0d6",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading columns into DataFrame using new column names."
+  },
+  "1721835144973803522": {
+    "json_params": {
+      "data_frame_id": "modify_columns_d4a411c197456104c225374eeb20e0d6_output",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loaded DataFrame for DataFramePackage modify_columns_d4a411c197456104c225374eeb20e0d6_output"
+  },
+  "1721835144973913522": {
+    "json_params": {
+      "data_frame_id": "modify_columns_d4a411c197456104c225374eeb20e0d6_output",
+      "task_id": "modify_columns_d4a411c197456104c225374eeb20e0d6",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Finished modify_columns task."
+  },
+  "1721835144973948986": {
+    "json_params": {
+      "data_frame_id": "tabular_join_7f49e0cba2f300f5449f1d3e8d947e8d_output",
+      "task_id": "modify_columns_d4a411c197456104c225374eeb20e0d6",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Removed taskID modify_columns_d4a411c197456104c225374eeb20e0d6 from dependentTasks of DataFramePackage tabular_join_7f49e0cba2f300f5449f1d3e8d947e8d_output"
+  },
+  "1721835144973980482": {
+    "json_params": {
+      "data_frame_id": "tabular_join_7f49e0cba2f300f5449f1d3e8d947e8d_output",
+      "task_id": "modify_columns_d4a411c197456104c225374eeb20e0d6",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "unloaded DataFrame tabular_join_7f49e0cba2f300f5449f1d3e8d947e8d_output with taskID modify_columns_d4a411c197456104c225374eeb20e0d6 being the last task"
+  },
+  "1721835144974000730": {
+    "json_params": {
+      "event_type": "TaskComplete",
+      "task_id": "modify_columns_d4a411c197456104c225374eeb20e0d6",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Task Complete"
+  },
+  "1721835144977063854": {
+    "json_params": {
+      "cache_path": "./cache/modify_columns_d4a411c197456104c225374eeb20e0d6_output.gpkg.meta.json",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Saved file to cache."
+  },
+  "1721835144977604051": {
+    "json_params": {
+      "event_type": "TaskStarted",
+      "task_id": "modify_columns_6b27defd7ad455bf2b9e0d6074ba2447",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Task Started"
+  },
+  "1721835144977622443": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "ERROR",
+    "message": "DataFramePackage is not loaded for modify_columns_6b27defd7ad455bf2b9e0d6074ba2447's input tabular_join_7f49e0cba2f300f5449f1d3e8d947e8d_output"
+  },
+  "1721835144977972247": {
+    "json_params": {
+      "file_path": "./cache/tabular_join_7f49e0cba2f300f5449f1d3e8d947e8d_output.gpkg",
+      "layer_name": "",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Reading vector file"
+  },
+  "1721835144978654292": {
+    "json_params": {
+      "file_path": "./cache/tabular_join_7f49e0cba2f300f5449f1d3e8d947e8d_output.gpkg",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Populated GDAL dataset"
+  },
+  "1721835144978670996": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Convert layer to GeometryDataFrame"
+  },
+  "1721835144979006227": {
+    "json_params": {
+      "timestamp": "1721835144",
+      "wkt": "GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AXIS[\"Latitude\",NORTH],AXIS[\"Longitude\",EAST],AUTHORITY[\"EPSG\",\"4326\"]]"
+    },
+    "log_level": "DEBUG",
+    "message": "Converting input layer to GeometryDataFrame"
+  },
+  "1721835144979708148": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Selecting the correct geometry type."
+  },
+  "1721835144979727828": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Generating a map of layer field values to insert into GeoDataFrame columns later."
+  },
+  "1721835144981835271": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading GeometryDataFrame with column values."
+  },
+  "1721835144981854294": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading Polygon Geometry column values."
+  },
+  "1721835144981879721": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading integer column values."
+  },
+  "1721835144981909985": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading integer64 column values."
+  },
+  "1721835144981922960": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading double column values."
+  },
+  "1721835144981942620": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading string column values."
+  },
+  "1721835144981969888": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Finished converting geometry layer to a GeometryDataFrame."
+  },
+  "1721835144981998940": {
+    "json_params": {
+      "cache_path": "./cache/tabular_join_7f49e0cba2f300f5449f1d3e8d947e8d_output.gpkg",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loaded cache."
+  },
+  "1721835144982017286": {
+    "json_params": {
+      "cache_path": "./cache/tabular_join_7f49e0cba2f300f5449f1d3e8d947e8d_output.gpkg",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "HashVerifiedCache loaded file from cache."
+  },
+  "1721835144982179729": {
+    "json_params": {
+      "data_frame_id": "modify_columns_6b27defd7ad455bf2b9e0d6074ba2447_output",
+      "task_id": "modify_columns_6b27defd7ad455bf2b9e0d6074ba2447",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Starting modify_columns."
+  },
+  "1721835144982307433": {
+    "json_params": {
+      "data_frame_id": "modify_columns_6b27defd7ad455bf2b9e0d6074ba2447_output",
+      "task_id": "modify_columns_6b27defd7ad455bf2b9e0d6074ba2447",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading columns into DataFrame using new column names."
+  },
+  "1721835144982404363": {
+    "json_params": {
+      "data_frame_id": "modify_columns_6b27defd7ad455bf2b9e0d6074ba2447_output",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loaded DataFrame for DataFramePackage modify_columns_6b27defd7ad455bf2b9e0d6074ba2447_output"
+  },
+  "1721835144982528538": {
+    "json_params": {
+      "data_frame_id": "modify_columns_6b27defd7ad455bf2b9e0d6074ba2447_output",
+      "task_id": "modify_columns_6b27defd7ad455bf2b9e0d6074ba2447",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Finished modify_columns task."
+  },
+  "1721835144982566130": {
+    "json_params": {
+      "data_frame_id": "tabular_join_7f49e0cba2f300f5449f1d3e8d947e8d_output",
+      "task_id": "modify_columns_6b27defd7ad455bf2b9e0d6074ba2447",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Removed taskID modify_columns_6b27defd7ad455bf2b9e0d6074ba2447 from dependentTasks of DataFramePackage tabular_join_7f49e0cba2f300f5449f1d3e8d947e8d_output"
+  },
+  "1721835144982595588": {
+    "json_params": {
+      "data_frame_id": "tabular_join_7f49e0cba2f300f5449f1d3e8d947e8d_output",
+      "task_id": "modify_columns_6b27defd7ad455bf2b9e0d6074ba2447",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "unloaded DataFrame tabular_join_7f49e0cba2f300f5449f1d3e8d947e8d_output with taskID modify_columns_6b27defd7ad455bf2b9e0d6074ba2447 being the last task"
+  },
+  "1721835144982616238": {
+    "json_params": {
+      "event_type": "TaskComplete",
+      "task_id": "modify_columns_6b27defd7ad455bf2b9e0d6074ba2447",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Task Complete"
+  },
+  "1721835144982728187": {
+    "json_params": {
+      "file_path": "./cache/modify_columns_6b27defd7ad455bf2b9e0d6074ba2447_output.gpkg",
+      "layer_name": "",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Save DataFrame to file"
+  },
+  "1721835144985247971": {
+    "json_params": {
+      "cache_path": "./cache/modify_columns_6b27defd7ad455bf2b9e0d6074ba2447_output.gpkg.meta.json",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Saved file to cache."
+  },
+  "1721835144985613458": {
+    "json_params": {
+      "event_type": "TaskStarted",
+      "task_id": "tabular_join_e5aa9c801a35535db7c9e7e9965ab351",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Task Started"
+  },
+  "1721835144985740231": {
+    "json_params": {
+      "data_frame_id": "tabular_join_e5aa9c801a35535db7c9e7e9965ab351_output",
+      "task_id": "tabular_join_e5aa9c801a35535db7c9e7e9965ab351",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Starting tabular_join."
+  },
+  "1721835144985768726": {
+    "json_params": {
+      "join_column": "id_column=boundary",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Start function: joinByColumn"
+  },
+  "1721835144985784700": {
+    "json_params": {
+      "join_column": "id_column=boundary",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Verifying unique column names"
+  },
+  "1721835144985900586": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Start function: joinByIndex"
+  },
+  "1721835144985915126": {
+    "json_params": {
+      "join_column": "",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Verifying unique column names"
+  },
+  "1721835144985969862": {
+    "json_params": {
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Finish function: joinByIndex"
+  },
+  "1721835144985984149": {
+    "json_params": {
+      "join_column": "id_column=boundary",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Finish function: joinByColumn"
+  },
+  "1721835144986073229": {
+    "json_params": {
+      "data_frame_id": "tabular_join_e5aa9c801a35535db7c9e7e9965ab351_output",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Loaded DataFrame for DataFramePackage tabular_join_e5aa9c801a35535db7c9e7e9965ab351_output"
+  },
+  "1721835144986172068": {
+    "json_params": {
+      "data_frame_id": "tabular_join_e5aa9c801a35535db7c9e7e9965ab351_output",
+      "task_id": "tabular_join_e5aa9c801a35535db7c9e7e9965ab351",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Finished tabular_join task."
+  },
+  "1721835144986215010": {
+    "json_params": {
+      "data_frame_id": "modify_columns_d4a411c197456104c225374eeb20e0d6_output",
+      "task_id": "tabular_join_e5aa9c801a35535db7c9e7e9965ab351",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Removed taskID tabular_join_e5aa9c801a35535db7c9e7e9965ab351 from dependentTasks of DataFramePackage modify_columns_d4a411c197456104c225374eeb20e0d6_output"
+  },
+  "1721835144986238569": {
+    "json_params": {
+      "data_frame_id": "modify_columns_d4a411c197456104c225374eeb20e0d6_output",
+      "task_id": "tabular_join_e5aa9c801a35535db7c9e7e9965ab351",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "unloaded DataFrame modify_columns_d4a411c197456104c225374eeb20e0d6_output with taskID tabular_join_e5aa9c801a35535db7c9e7e9965ab351 being the last task"
+  },
+  "1721835144986258537": {
+    "json_params": {
+      "data_frame_id": "modify_columns_6b27defd7ad455bf2b9e0d6074ba2447_output",
+      "task_id": "tabular_join_e5aa9c801a35535db7c9e7e9965ab351",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Removed taskID tabular_join_e5aa9c801a35535db7c9e7e9965ab351 from dependentTasks of DataFramePackage modify_columns_6b27defd7ad455bf2b9e0d6074ba2447_output"
+  },
+  "1721835144986284722": {
+    "json_params": {
+      "data_frame_id": "modify_columns_6b27defd7ad455bf2b9e0d6074ba2447_output",
+      "task_id": "tabular_join_e5aa9c801a35535db7c9e7e9965ab351",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "unloaded DataFrame modify_columns_6b27defd7ad455bf2b9e0d6074ba2447_output with taskID tabular_join_e5aa9c801a35535db7c9e7e9965ab351 being the last task"
+  },
+  "1721835144986305193": {
+    "json_params": {
+      "event_type": "TaskComplete",
+      "task_id": "tabular_join_e5aa9c801a35535db7c9e7e9965ab351",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Task Complete"
+  },
+  "1721835144989560099": {
+    "json_params": {
+      "cache_path": "./cache/tabular_join_e5aa9c801a35535db7c9e7e9965ab351_output.gpkg.meta.json",
+      "timestamp": "1721835144"
+    },
+    "log_level": "DEBUG",
+    "message": "Saved file to cache."
+  }
+}
