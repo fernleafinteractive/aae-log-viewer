@@ -1,0 +1,510 @@
+[
+  {
+    "data": {
+      "file_path": "/home/shayan/CLionProjects/acceladaptcpp/test/test_data/Shapefile/points.shp.zip",
+      "layer_name": "",
+      "log_level": "DEBUG",
+      "timestamp": "1722018987"
+    },
+    "log_level": "DEBUG",
+    "message": "Reading vector file"
+  },
+  {
+    "data": {
+      "file_path": "/home/shayan/CLionProjects/acceladaptcpp/test/test_data/Shapefile/points.shp.zip",
+      "log_level": "DEBUG",
+      "timestamp": "1722018987"
+    },
+    "log_level": "DEBUG",
+    "message": "Populated GDAL dataset"
+  },
+  {
+    "data": {
+      "log_level": "DEBUG",
+      "timestamp": "1722018987"
+    },
+    "log_level": "DEBUG",
+    "message": "Convert layer to GeometryDataFrame"
+  },
+  {
+    "data": {
+      "log_level": "DEBUG",
+      "timestamp": "1722018987",
+      "wkt": "GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AXIS[\"Latitude\",NORTH],AXIS[\"Longitude\",EAST],AUTHORITY[\"EPSG\",\"4326\"]]"
+    },
+    "log_level": "DEBUG",
+    "message": "Converting input layer to GeometryDataFrame"
+  },
+  {
+    "data": {
+      "log_level": "DEBUG",
+      "timestamp": "1722018987"
+    },
+    "log_level": "DEBUG",
+    "message": "Selecting the correct geometry type."
+  },
+  {
+    "data": {
+      "log_level": "DEBUG",
+      "timestamp": "1722018987"
+    },
+    "log_level": "DEBUG",
+    "message": "Generating a map of layer field values to insert into GeoDataFrame columns later."
+  },
+  {
+    "data": {
+      "log_level": "DEBUG",
+      "timestamp": "1722018987"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading GeometryDataFrame with column values."
+  },
+  {
+    "data": {
+      "log_level": "DEBUG",
+      "timestamp": "1722018987"
+    },
+    "log_level": "DEBUG",
+    "message": "Finished converting geometry layer to a GeometryDataFrame."
+  },
+  {
+    "data": {
+      "data_frame_id": "test_buffer_id",
+      "log_level": "DEBUG",
+      "timestamp": "1722018987"
+    },
+    "log_level": "DEBUG",
+    "message": "Loaded DataFrame for DataFramePackage test_buffer_id"
+  },
+  {
+    "data": {
+      "data": {
+        "task_id": "buffer_ce3d9da854c464fe66e402bba5447734",
+        "task_params": {
+          "buffer_amount": 10,
+          "input_data_frame_id": "test_buffer_id"
+        },
+        "task_type": "buffer"
+      },
+      "log_level": "TASK_STATUS",
+      "task_status": "IDLE",
+      "timestamp": "1722018987"
+    },
+    "log_level": "TASK_STATUS",
+    "message": "Generating task buffer_ce3d9da854c464fe66e402bba5447734"
+  },
+  {
+    "data": {
+      "data": {
+        "task_id": "buffer_ce3d9da854c464fe66e402bba5447734",
+        "task_params": {
+          "buffer_amount": 10,
+          "input_data_frame_id": "test_buffer_id"
+        },
+        "task_type": "buffer"
+      },
+      "log_level": "TASK_STATUS",
+      "task_status": "IDLE",
+      "timestamp": "1722018987"
+    },
+    "log_level": "TASK_STATUS",
+    "message": "Created task buffer_ce3d9da854c464fe66e402bba5447734"
+  },
+  {
+    "data": {
+      "data": {
+        "task_id": "buffer_ce3d9da854c464fe66e402bba5447734",
+        "task_params": {
+          "buffer_amount": 10,
+          "input_data_frame_id": "test_buffer_id"
+        },
+        "task_type": "buffer"
+      },
+      "log_level": "TASK_STATUS",
+      "task_status": "STARTED",
+      "timestamp": "1722018987"
+    },
+    "log_level": "TASK_STATUS",
+    "message": "Starting task buffer_ce3d9da854c464fe66e402bba5447734"
+  },
+  {
+    "data": {
+      "data": {
+        "task_id": "buffer_ce3d9da854c464fe66e402bba5447734",
+        "task_params": {
+          "buffer_amount": 10,
+          "input_data_frame_id": "test_buffer_id"
+        },
+        "task_type": "buffer"
+      },
+      "log_level": "TASK_STATUS",
+      "task_status": "RUNNING",
+      "timestamp": "1722018987"
+    },
+    "log_level": "TASK_STATUS",
+    "message": "Running task buffer_ce3d9da854c464fe66e402bba5447734"
+  },
+  {
+    "data": {
+      "data": {
+        "task_id": "buffer_ce3d9da854c464fe66e402bba5447734",
+        "task_params": {
+          "buffer_amount": 10,
+          "input_data_frame_id": "test_buffer_id"
+        },
+        "task_type": "buffer"
+      },
+      "log_level": "TASK_STATUS",
+      "task_status": "RUNNING",
+      "timestamp": "1722018987"
+    },
+    "log_level": "TASK_STATUS",
+    "message": "Starting to buffer geometries buffer_ce3d9da854c464fe66e402bba5447734"
+  },
+  {
+    "data": {
+      "GeometryType": "POINT",
+      "buffer": 10,
+      "log_level": "DEBUG",
+      "timestamp": "1722018987"
+    },
+    "log_level": "DEBUG",
+    "message": "Buffering dataframe"
+  },
+  {
+    "data": {
+      "log_level": "DEBUG",
+      "timestamp": "1722018987"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading buffered geometries into output DataFrame"
+  },
+  {
+    "data": {
+      "log_level": "DEBUG",
+      "timestamp": "1722018987"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading columns from input DataFrame into the buffered output DataFrame"
+  },
+  {
+    "data": {
+      "data": {
+        "task_id": "buffer_ce3d9da854c464fe66e402bba5447734",
+        "task_params": {
+          "buffer_amount": 10,
+          "input_data_frame_id": "test_buffer_id"
+        },
+        "task_type": "buffer"
+      },
+      "log_level": "TASK_STATUS",
+      "task_status": "RUNNING",
+      "timestamp": "1722018987"
+    },
+    "log_level": "TASK_STATUS",
+    "message": "Finished buffering geometries buffer_ce3d9da854c464fe66e402bba5447734"
+  },
+  {
+    "data": {
+      "data_frame_id": "buffer_ce3d9da854c464fe66e402bba5447734_output",
+      "log_level": "DEBUG",
+      "timestamp": "1722018987"
+    },
+    "log_level": "DEBUG",
+    "message": "Loaded DataFrame for DataFramePackage buffer_ce3d9da854c464fe66e402bba5447734_output"
+  },
+  {
+    "data": {
+      "data": {
+        "task_id": "buffer_ce3d9da854c464fe66e402bba5447734",
+        "task_params": {
+          "buffer_amount": 10,
+          "input_data_frame_id": "test_buffer_id"
+        },
+        "task_type": "buffer"
+      },
+      "log_level": "TASK_STATUS",
+      "task_status": "RUNNING",
+      "timestamp": "1722018987"
+    },
+    "log_level": "TASK_STATUS",
+    "message": "Finished buffering task buffer_ce3d9da854c464fe66e402bba5447734"
+  },
+  {
+    "data": {
+      "data": {
+        "task_id": "buffer_ce3d9da854c464fe66e402bba5447734",
+        "task_params": {
+          "buffer_amount": 10,
+          "input_data_frame_id": "test_buffer_id"
+        },
+        "task_type": "buffer"
+      },
+      "log_level": "TASK_STATUS",
+      "task_status": "COMPLETE",
+      "timestamp": "1722018987"
+    },
+    "log_level": "TASK_STATUS",
+    "message": "Completed task buffer_ce3d9da854c464fe66e402bba5447734"
+  },
+  {
+    "data": {
+      "data_frame_id": "test_buffer_id",
+      "log_level": "DEBUG",
+      "task_id": "buffer_ce3d9da854c464fe66e402bba5447734",
+      "timestamp": "1722018987"
+    },
+    "log_level": "DEBUG",
+    "message": "Removed taskID buffer_ce3d9da854c464fe66e402bba5447734 from dependentTasks of DataFramePackage test_buffer_id"
+  },
+  {
+    "data": {
+      "data_frame_id": "test_buffer_id",
+      "log_level": "DEBUG",
+      "task_id": "buffer_ce3d9da854c464fe66e402bba5447734",
+      "timestamp": "1722018987"
+    },
+    "log_level": "DEBUG",
+    "message": "unloaded DataFrame test_buffer_id with taskID buffer_ce3d9da854c464fe66e402bba5447734 being the last task"
+  },
+  {
+    "data": {
+      "data_frame_id": "test_buffer_id_neg",
+      "log_level": "DEBUG",
+      "timestamp": "1722018987"
+    },
+    "log_level": "DEBUG",
+    "message": "Loaded DataFrame for DataFramePackage test_buffer_id_neg"
+  },
+  {
+    "data": {
+      "data": {
+        "task_id": "buffer_683afa8b1351ee19e21763a4a22fcd28",
+        "task_params": {
+          "buffer_amount": -3,
+          "input_data_frame_id": "test_buffer_id_neg"
+        },
+        "task_type": "buffer"
+      },
+      "log_level": "TASK_STATUS",
+      "task_status": "IDLE",
+      "timestamp": "1722018987"
+    },
+    "log_level": "TASK_STATUS",
+    "message": "Generating task buffer_683afa8b1351ee19e21763a4a22fcd28"
+  },
+  {
+    "data": {
+      "data": {
+        "task_id": "buffer_683afa8b1351ee19e21763a4a22fcd28",
+        "task_params": {
+          "buffer_amount": -3,
+          "input_data_frame_id": "test_buffer_id_neg"
+        },
+        "task_type": "buffer"
+      },
+      "log_level": "TASK_STATUS",
+      "task_status": "IDLE",
+      "timestamp": "1722018987"
+    },
+    "log_level": "TASK_STATUS",
+    "message": "Created task buffer_683afa8b1351ee19e21763a4a22fcd28"
+  },
+  {
+    "data": {
+      "data": {
+        "task_id": "buffer_683afa8b1351ee19e21763a4a22fcd28",
+        "task_params": {
+          "buffer_amount": -3,
+          "input_data_frame_id": "test_buffer_id_neg"
+        },
+        "task_type": "buffer"
+      },
+      "log_level": "TASK_STATUS",
+      "task_status": "STARTED",
+      "timestamp": "1722018987"
+    },
+    "log_level": "TASK_STATUS",
+    "message": "Starting task buffer_683afa8b1351ee19e21763a4a22fcd28"
+  },
+  {
+    "data": {
+      "data": {
+        "task_id": "buffer_683afa8b1351ee19e21763a4a22fcd28",
+        "task_params": {
+          "buffer_amount": -3,
+          "input_data_frame_id": "test_buffer_id_neg"
+        },
+        "task_type": "buffer"
+      },
+      "log_level": "TASK_STATUS",
+      "task_status": "RUNNING",
+      "timestamp": "1722018987"
+    },
+    "log_level": "TASK_STATUS",
+    "message": "Running task buffer_683afa8b1351ee19e21763a4a22fcd28"
+  },
+  {
+    "data": {
+      "data": {
+        "task_id": "buffer_683afa8b1351ee19e21763a4a22fcd28",
+        "task_params": {
+          "buffer_amount": -3,
+          "input_data_frame_id": "test_buffer_id_neg"
+        },
+        "task_type": "buffer"
+      },
+      "log_level": "TASK_STATUS",
+      "task_status": "RUNNING",
+      "timestamp": "1722018987"
+    },
+    "log_level": "TASK_STATUS",
+    "message": "Starting to buffer geometries buffer_683afa8b1351ee19e21763a4a22fcd28"
+  },
+  {
+    "data": {
+      "GeometryType": "MULTI_POLYGON",
+      "buffer": -3,
+      "log_level": "DEBUG",
+      "timestamp": "1722018987"
+    },
+    "log_level": "DEBUG",
+    "message": "Buffering dataframe"
+  },
+  {
+    "data": {
+      "log_level": "DEBUG",
+      "timestamp": "1722018987"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading buffered geometries into output DataFrame"
+  },
+  {
+    "data": {
+      "log_level": "DEBUG",
+      "timestamp": "1722018987"
+    },
+    "log_level": "DEBUG",
+    "message": "Loading columns from input DataFrame into the buffered output DataFrame"
+  },
+  {
+    "data": {
+      "data": {
+        "task_id": "buffer_683afa8b1351ee19e21763a4a22fcd28",
+        "task_params": {
+          "buffer_amount": -3,
+          "input_data_frame_id": "test_buffer_id_neg"
+        },
+        "task_type": "buffer"
+      },
+      "log_level": "TASK_STATUS",
+      "task_status": "RUNNING",
+      "timestamp": "1722018987"
+    },
+    "log_level": "TASK_STATUS",
+    "message": "Finished buffering geometries buffer_683afa8b1351ee19e21763a4a22fcd28"
+  },
+  {
+    "data": {
+      "data_frame_id": "buffer_683afa8b1351ee19e21763a4a22fcd28_output",
+      "log_level": "DEBUG",
+      "timestamp": "1722018987"
+    },
+    "log_level": "DEBUG",
+    "message": "Loaded DataFrame for DataFramePackage buffer_683afa8b1351ee19e21763a4a22fcd28_output"
+  },
+  {
+    "data": {
+      "data": {
+        "task_id": "buffer_683afa8b1351ee19e21763a4a22fcd28",
+        "task_params": {
+          "buffer_amount": -3,
+          "input_data_frame_id": "test_buffer_id_neg"
+        },
+        "task_type": "buffer"
+      },
+      "log_level": "TASK_STATUS",
+      "task_status": "RUNNING",
+      "timestamp": "1722018987"
+    },
+    "log_level": "TASK_STATUS",
+    "message": "Finished buffering task buffer_683afa8b1351ee19e21763a4a22fcd28"
+  },
+  {
+    "data": {
+      "data": {
+        "task_id": "buffer_683afa8b1351ee19e21763a4a22fcd28",
+        "task_params": {
+          "buffer_amount": -3,
+          "input_data_frame_id": "test_buffer_id_neg"
+        },
+        "task_type": "buffer"
+      },
+      "log_level": "TASK_STATUS",
+      "task_status": "COMPLETE",
+      "timestamp": "1722018987"
+    },
+    "log_level": "TASK_STATUS",
+    "message": "Completed task buffer_683afa8b1351ee19e21763a4a22fcd28"
+  },
+  {
+    "data": {
+      "data_frame_id": "test_buffer_id_neg",
+      "log_level": "DEBUG",
+      "task_id": "buffer_683afa8b1351ee19e21763a4a22fcd28",
+      "timestamp": "1722018987"
+    },
+    "log_level": "DEBUG",
+    "message": "Removed taskID buffer_683afa8b1351ee19e21763a4a22fcd28 from dependentTasks of DataFramePackage test_buffer_id_neg"
+  },
+  {
+    "data": {
+      "data_frame_id": "test_buffer_id_neg",
+      "log_level": "DEBUG",
+      "task_id": "buffer_683afa8b1351ee19e21763a4a22fcd28",
+      "timestamp": "1722018987"
+    },
+    "log_level": "DEBUG",
+    "message": "unloaded DataFrame test_buffer_id_neg with taskID buffer_683afa8b1351ee19e21763a4a22fcd28 being the last task"
+  },
+  {
+    "data": {
+      "data_frame_id": "buffer_683afa8b1351ee19e21763a4a22fcd28_output",
+      "log_level": "DEBUG",
+      "task_id": "43932d10ceb1d0e4b0c9fd8e82384d7a_135009224117568_2",
+      "timestamp": "1722018987"
+    },
+    "log_level": "DEBUG",
+    "message": "Removed taskID 43932d10ceb1d0e4b0c9fd8e82384d7a_135009224117568_2 from dependentTasks of DataFramePackage buffer_683afa8b1351ee19e21763a4a22fcd28_output"
+  },
+  {
+    "data": {
+      "data_frame_id": "buffer_683afa8b1351ee19e21763a4a22fcd28_output",
+      "log_level": "DEBUG",
+      "task_id": "43932d10ceb1d0e4b0c9fd8e82384d7a_135009224117568_2",
+      "timestamp": "1722018987"
+    },
+    "log_level": "DEBUG",
+    "message": "unloaded DataFrame buffer_683afa8b1351ee19e21763a4a22fcd28_output with taskID 43932d10ceb1d0e4b0c9fd8e82384d7a_135009224117568_2 being the last task"
+  },
+  {
+    "data": {
+      "data_frame_id": "buffer_ce3d9da854c464fe66e402bba5447734_output",
+      "log_level": "DEBUG",
+      "task_id": "0086f6eefccae002657abfaea160e863_135009224117568_1",
+      "timestamp": "1722018987"
+    },
+    "log_level": "DEBUG",
+    "message": "Removed taskID 0086f6eefccae002657abfaea160e863_135009224117568_1 from dependentTasks of DataFramePackage buffer_ce3d9da854c464fe66e402bba5447734_output"
+  },
+  {
+    "data": {
+      "data_frame_id": "buffer_ce3d9da854c464fe66e402bba5447734_output",
+      "log_level": "DEBUG",
+      "task_id": "0086f6eefccae002657abfaea160e863_135009224117568_1",
+      "timestamp": "1722018987"
+    },
+    "log_level": "DEBUG",
+    "message": "unloaded DataFrame buffer_ce3d9da854c464fe66e402bba5447734_output with taskID 0086f6eefccae002657abfaea160e863_135009224117568_1 being the last task"
+  }
+]
