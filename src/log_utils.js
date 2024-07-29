@@ -2,6 +2,6 @@ export function getLogInfo() {
 
 }
 
-export function getLogTime(key) {
-    return new Date(parseInt(key)).toLocaleString();
+export function getLogTime(time) {
+    return new Date(parseInt(time) * 1000).toLocaleString();
 }

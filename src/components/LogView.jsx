@@ -4,6 +4,12 @@ import LogDebugRow from "./LogDebugRow.jsx";
 
 export default function LogView({logs}) {
 
+    if (logs.length === 0) {
+        return (
+            <div className={"text-gray-600"}>No logs to view</div>
+        )
+    }
+
     return (
         <>
             {logs.map((log, index) => (
