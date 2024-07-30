@@ -6,7 +6,7 @@ export default function LogView({logs}) {
 
     if (logs.length === 0) {
         return (
-            <div className={"text-gray-600"}>No logs to view</div>
+            <h1 className={"text-gray-600 text-center font-bold"}>No logs to view</h1>
         )
     }
 
@@ -21,18 +21,4 @@ export default function LogView({logs}) {
         </>
     )
 
-}
-
-function getLogTime(key) {
-    return new Date(parseInt(key)).toLocaleString();
-}
-
-function buildInfo(logData) {
-
-    return {
-        timestamp: getLogTime(logData.json_params.timestamp),
-        message: logData.message,
-        log_level: logData.log_level,
-        json_params: logData.json_params
-    }
 }
