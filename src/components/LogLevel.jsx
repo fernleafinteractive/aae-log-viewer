@@ -10,7 +10,6 @@ export function LogLevel({logLevel}) {
 }
 
 function friendlyLogLevel(logLevel) {
-    console.log(logLevel)
     switch (logLevel) {
         case 'DEBUG':
             return <div className={"bg-gray-400 text-white max-w-[10rem] text-center rounded-md"}>Debug</div>;
