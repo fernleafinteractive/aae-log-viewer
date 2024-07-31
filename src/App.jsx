@@ -32,7 +32,7 @@ function App() {
 
     useEffect(() => {
 
-        setLogs(SAMPLE_LOG);
+        // setLogs(SAMPLE_LOG);
 
         function onConnect() {
             console.log("connected");
