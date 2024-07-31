@@ -9,9 +9,10 @@ export default function LogDebugRow({info}) {
 
     return (
         <div className={"border-b-2"}>
-            <div className={"grid grid-cols-6 p-2"}>
+            <div className={"grid grid-cols-7 p-2"}>
                 <div className={"col-span-1"}>{getLogTime(info["data"].timestamp)}</div>
                 <div className={"col-span-1"}><LogLevel logLevel={info.log_level} /></div>
+                <div className={"col-span-1 text-center"}>--</div>
                 <div className={"col-span-3"}>{info.message}</div>
                 <div className={"col-span-1 flex items-center justify-end hover:cursor-pointer text-gray-400"} onClick={() => setShowExtra(!showExtra)}>
                     <MoreIcon />

@@ -9,6 +9,7 @@ import FilterBar from "./components/FilterBar.jsx";
 function App() {
 
     const [logs, setLogs] = useState([]);
+    const [logsMeta, setLogsMeta] = useState(null);
     const [statusFilter, setStatusFilter] = useState("");
     const [messageFilter, setMessageFilter] = useState("");
 
@@ -66,7 +67,7 @@ function App() {
   return (
       <div className={"px-24"} style={{height: '100%'}}>
 
-          <FilterBar setStatusFilter={setStatusFilter} setMessageFilter={setMessageFilter} connected={connected} />
+          <FilterBar logs={logs} setStatusFilter={setStatusFilter} setMessageFilter={setMessageFilter} connected={connected} />
 
           <LogView logs={filterLogs(logs, statusFilter, messageFilter)} />
       </div>
