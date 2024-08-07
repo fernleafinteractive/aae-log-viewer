@@ -6,15 +6,16 @@ import ChevronUp from "./ChevronUp.jsx";
 import ChevronDown from "./ChevronDown.jsx";
 import {Button} from "flowbite-react";
 import Loading from "./Loading.jsx";
+import {getRandomColor} from "../log_utils.js";
 
 export default function Views({logs, connected}) {
 
     return (
         <>
-            {/*<Logs
+            <Logs
                 logs={logs}
                 connected={connected}
-            />*/}
+            />
             <TaskTimings logs={logs} />
         </>
     )
@@ -69,21 +70,23 @@ function TaskTimings({logs}) {
 
 function Timing({taskId, tasks}) {
     const [showTimings, setShowTimings] = useState(false);
+    const [color, setColor] = useState(getRandomColor());
 
     return (
-        <div>
+        <div className={"mb-4"}>
             <div className={"flex items-center"}>
+                <div className={`p-2 rounded me-4`} style={{background: color}}></div>
                 <div className={"me-4"}>{taskId}</div>
                 <div className={"ms-auto me-4"}>{isTaskRunning(tasks) ?
                     <Loading/> : getTaskExecutionTime(tasks)}</div>
                 <Button className={"ms-4"} onClick={() => {
                     setShowTimings(!showTimings)
                 }}>
-                    {showTimings ? <ChevronDown/> : <ChevronUp/>}
+                    {showTimings ? <ChevronUp/> : <ChevronDown/>}
                 </Button>
 
             </div>
-            <div className={!showTimings ? 'hidden' : 'border-s-2 border-gray-300 ps-2'}>
+            <div className={!showTimings ? 'hidden border-0' : 'border-s-2 ms-1.5 ps-2'} style={{borderColor: color}}>
                 {tasks.map((v, index) => (
                     <LogTaskStatusRow info={v} key={index}/>
                 ))}
