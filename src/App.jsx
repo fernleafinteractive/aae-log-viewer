@@ -5,34 +5,17 @@ import SAMPLE_LOG from '../test_data/test.json';
 
 import LogView from "./components/LogView.jsx";
 import FilterBar from "./components/FilterBar.jsx";
+import Views from "./components/Views.jsx";
 
 function App() {
 
     const [logs, setLogs] = useState([]);
-    const [logsMeta, setLogsMeta] = useState(null);
-    const [statusFilter, setStatusFilter] = useState("");
-    const [messageFilter, setMessageFilter] = useState("");
 
     const [connected, setConnected] = useState(false);
 
-    function filterLogs(logs, filter, message) {
-        let _logs = [];
-        if(filter.length !== 0 && filter !== "All") {
-            _logs = logs.filter(log => log.log_level === filter);
-        } else {
-            _logs = [...logs];
-        }
-
-        if(message.length > 0) {
-            _logs = _logs.filter(log => log.message.toLowerCase().includes(message.toLowerCase()));
-        }
-
-        return _logs;
-    }
-
     useEffect(() => {
 
-        // setLogs(SAMPLE_LOG);
+        setLogs(SAMPLE_LOG);
 
         function onConnect() {
             console.log("connected");
@@ -67,9 +50,10 @@ function App() {
   return (
       <div className={"px-24"} style={{height: '100%'}}>
 
-          <FilterBar logs={logs} setStatusFilter={setStatusFilter} setMessageFilter={setMessageFilter} connected={connected} />
-
-          <LogView logs={filterLogs(logs, statusFilter, messageFilter)} />
+          <Views
+              logs={logs}
+              connected={connected}
+          />
       </div>
   )
 }
