@@ -15,7 +15,7 @@ function App() {
 
     useEffect(() => {
 
-        setLogs(SAMPLE_LOG);
+        // setLogs(SAMPLE_LOG);
 
         function onConnect() {
             console.log("connected");
@@ -47,8 +47,27 @@ function App() {
         }
     }, []);
 
+    const fileSelect = async (e) => {
+        e.preventDefault();
+        const file = e.target.files[0];
+        const text = await file.text();
+        const json = JSON.parse(text);
+
+        const output = [];
+        for(const k of Object.keys(json)) {
+            const oldObject = json[k];
+            const newObject = {};
+            delete Object.assign(newObject, oldObject, {["data"]: oldObject["json_params"] })["json_params"];
+            output.push(newObject);
+        }
+        console.log(output);
+        setLogs(output);
+    }
+
   return (
       <div className={"px-24"} style={{height: '100%'}}>
+
+          <input type={"file"} accept={"application/json"} onChange={fileSelect} />
 
           <Views
               logs={logs}

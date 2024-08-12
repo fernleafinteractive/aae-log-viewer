@@ -16,7 +16,7 @@ export default function Views({logs, connected}) {
                 logs={logs}
                 connected={connected}
             />
-            <TaskTimings logs={logs} />
+            {/*<TaskTimings logs={logs} />*/}
         </>
     )
 
