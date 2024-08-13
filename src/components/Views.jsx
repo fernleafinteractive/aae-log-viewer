@@ -7,6 +7,7 @@ import ChevronDown from "./ChevronDown.jsx";
 import {Button} from "flowbite-react";
 import Loading from "./Loading.jsx";
 import {getRandomColor, stringToColor} from "../log_utils.js";
+import ErrorIcon from "./ErrorIcon.jsx";
 
 export default function Views({logs, connected, fileSelect}) {
 
@@ -38,7 +39,7 @@ export default function Views({logs, connected, fileSelect}) {
                 logView ?
                     <LogView logs={filterLogs(logs, statusFilter, messageFilter)} />
                     :
-                    <TaskTimings logs={logs} />
+                    <TaskTimings logs={filterLogs(logs, statusFilter, messageFilter)} />
             }
         </>
     )
@@ -79,7 +80,11 @@ function Timing({taskId, tasks}) {
         <div className={"mb-4"}>
             <div className={"flex items-center"}>
                 <div className={`p-2 rounded me-4`} style={{backgroundColor: stringToColor(taskId)}}></div>
-                <div className={"me-4"}>{taskId}</div>
+                <div className={"me-4 flex items-center"}>
+                    {taskId}
+                    {didTaskFail(tasks) ? <span title={"task failed"} className={"text-red-500 ms-4"}><ErrorIcon /></span>
+                    : ''}
+                </div>
                 <div className={"ms-auto me-4"}>{isTaskRunning(tasks) ?
                     <Loading/> : `${getTaskExecutionTime(tasks)}ms`}</div>
                 <button className={"ms-4"} onClick={() => {
@@ -143,4 +148,14 @@ function isTaskRunning(data) {
     }
 
     return true;
+}
+
+function didTaskFail(data) {
+    for(const task of data) {
+        if (task.data.task_status === 'FAILED') {
+            return true;
+        }
+    }
+
+    return false;
 }
