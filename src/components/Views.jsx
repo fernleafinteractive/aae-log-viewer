@@ -82,11 +82,11 @@ function Timing({taskId, tasks}) {
                 <div className={"me-4"}>{taskId}</div>
                 <div className={"ms-auto me-4"}>{isTaskRunning(tasks) ?
                     <Loading/> : `${getTaskExecutionTime(tasks)}ms`}</div>
-                <Button className={"ms-4"} onClick={() => {
+                <button className={"ms-4"} onClick={() => {
                     setShowTimings(!showTimings)
                 }}>
                     {showTimings ? <ChevronUp/> : <ChevronDown/>}
-                </Button>
+                </button>
 
             </div>
             <div className={!showTimings ? 'hidden border-0' : 'border-s-2 ms-1.5 ps-2'} style={{borderColor:  stringToColor(taskId)}}>
