@@ -6,23 +6,11 @@ import ChevronUp from "./ChevronUp.jsx";
 import ChevronDown from "./ChevronDown.jsx";
 import {Button} from "flowbite-react";
 import Loading from "./Loading.jsx";
-import {getRandomColor} from "../log_utils.js";
+import {getRandomColor, stringToColor} from "../log_utils.js";
 
-export default function Views({logs, connected}) {
+export default function Views({logs, connected, fileSelect}) {
 
-    return (
-        <>
-            <Logs
-                logs={logs}
-                connected={connected}
-            />
-            {/*<TaskTimings logs={logs} />*/}
-        </>
-    )
-
-}
-
-function Logs({logs, connected}) {
+    const [logView, setLogView] = useState(true);
 
     const [statusFilter, setStatusFilter] = useState("");
     const [messageFilter, setMessageFilter] = useState("");
@@ -44,10 +32,17 @@ function Logs({logs, connected}) {
 
     return (
         <>
-            <FilterBar logs={logs} setStatusFilter={setStatusFilter} setMessageFilter={setMessageFilter} connected={connected} />
-            <LogView logs={filterLogs(logs, statusFilter, messageFilter)} />
+            <FilterBar logs={logs} setStatusFilter={setStatusFilter} setMessageFilter={setMessageFilter} connected={connected} fileSelect={fileSelect} logView={logView} setLogView={setLogView} />
+
+            {
+                logView ?
+                    <LogView logs={filterLogs(logs, statusFilter, messageFilter)} />
+                    :
+                    <TaskTimings logs={logs} />
+            }
         </>
     )
+
 }
 
 function TaskTimings({logs}) {
@@ -58,6 +53,15 @@ function TaskTimings({logs}) {
     return (
         <div>
             <div>Total exeuction time: {totalExecutionTime}</div>
+
+            <div className={"flex items-center"}>
+
+                {mapping.map((task, index) => (
+                    <div key={index} className={`p-3`} style={{width: `${(getTaskExecutionTime(task.value)/totalExecutionTime)*100}%`, backgroundColor: `${stringToColor(task.key)}`}}></div>
+                ))}
+
+            </div>
+
             {mapping.map((task, index) => (
                 <div key={index}>
                     <Timing taskId={task.key} tasks={task.value} />
@@ -70,15 +74,14 @@ function TaskTimings({logs}) {
 
 function Timing({taskId, tasks}) {
     const [showTimings, setShowTimings] = useState(false);
-    const [color, setColor] = useState(getRandomColor());
 
     return (
         <div className={"mb-4"}>
             <div className={"flex items-center"}>
-                <div className={`p-2 rounded me-4`} style={{background: color}}></div>
+                <div className={`p-2 rounded me-4`} style={{backgroundColor: stringToColor(taskId)}}></div>
                 <div className={"me-4"}>{taskId}</div>
                 <div className={"ms-auto me-4"}>{isTaskRunning(tasks) ?
-                    <Loading/> : getTaskExecutionTime(tasks)}</div>
+                    <Loading/> : `${getTaskExecutionTime(tasks)}ms`}</div>
                 <Button className={"ms-4"} onClick={() => {
                     setShowTimings(!showTimings)
                 }}>
@@ -86,7 +89,7 @@ function Timing({taskId, tasks}) {
                 </Button>
 
             </div>
-            <div className={!showTimings ? 'hidden border-0' : 'border-s-2 ms-1.5 ps-2'} style={{borderColor: color}}>
+            <div className={!showTimings ? 'hidden border-0' : 'border-s-2 ms-1.5 ps-2'} style={{borderColor:  stringToColor(taskId)}}>
                 {tasks.map((v, index) => (
                     <LogTaskStatusRow info={v} key={index}/>
                 ))}
@@ -114,11 +117,10 @@ function groupTasksById(logs) {
 
 function getTaskExecutionTime(data) {
     const timestamps = data.map(d => d.data.timestamp);
-    console.log(timestamps);
     const min = Math.min(...timestamps);
     const max = Math.max(...timestamps);
 
-    return `${max - min} ms`;
+    return max - min;
 }
 
 function getTotalExecutionTime(data) {
@@ -130,7 +132,6 @@ function getTotalExecutionTime(data) {
 }
 
 function isTaskRunning(data) {
-    console.log(data);
     for(const task of data) {
         if (task.data.task_status === 'COMPLETE' || task.data.task_status === 'FAILED') {
             return false;

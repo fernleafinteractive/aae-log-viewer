@@ -1,11 +1,9 @@
 import {useEffect, useState} from "react";
 
 import {socket} from "./socket.js";
-import SAMPLE_LOG from '../test_data/test.json';
 
-import LogView from "./components/LogView.jsx";
-import FilterBar from "./components/FilterBar.jsx";
 import Views from "./components/Views.jsx";
+import {stringToColor} from "./log_utils.js";
 
 function App() {
 
@@ -14,6 +12,7 @@ function App() {
     const [connected, setConnected] = useState(false);
 
     useEffect(() => {
+
 
         // setLogs(SAMPLE_LOG);
 
@@ -60,18 +59,16 @@ function App() {
             delete Object.assign(newObject, oldObject, {["data"]: oldObject["json_params"] })["json_params"];
             output.push(newObject);
         }
-        console.log(output);
         setLogs(output);
     }
 
   return (
       <div className={"px-24"} style={{height: '100%'}}>
 
-          <input type={"file"} accept={"application/json"} onChange={fileSelect} />
-
           <Views
               logs={logs}
               connected={connected}
+              fileSelect={fileSelect}
           />
       </div>
   )
