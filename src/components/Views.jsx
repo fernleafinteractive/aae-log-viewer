@@ -52,12 +52,12 @@ function TaskTimings({logs}) {
 
     return (
         <div>
-            <div>Total exeuction time: {totalExecutionTime}</div>
+            <h1 className={"text-xl mb-4 bg-gray-300 p-2 rounded"}>Total execution time: <span className={"font-bold"}>{totalExecutionTime > 1000 ? totalExecutionTime / 1000 : totalExecutionTime}</span> {totalExecutionTime > 1000 ? 'seconds' : 'ms'}</h1>
 
-            <div className={"flex items-center"}>
+            <div className={"flex items-center rounded"}>
 
                 {mapping.map((task, index) => (
-                    <div key={index} className={`p-3`} style={{width: `${(getTaskExecutionTime(task.value)/totalExecutionTime)*100}%`, backgroundColor: `${stringToColor(task.key)}`}}></div>
+                    <div title={task.key} key={index} className={`first:rounded-s last:rounded-e mb-4 p-3`} style={{width: `${(getTaskExecutionTime(task.value)/totalExecutionTime)*100}%`, backgroundColor: `${stringToColor(task.key)}`}}></div>
                 ))}
 
             </div>
@@ -112,7 +112,11 @@ function groupTasksById(logs) {
         map.get(taskId).push(log);
     }
 
-    return Array.from(map, ([key, value]) => ({key, value}));
+    let s = new Map([...map.entries()].sort((a, b) => {
+        return getTaskExecutionTime(b[1]) - getTaskExecutionTime(a[1]);
+    }))
+
+    return Array.from(s, ([key, value]) => ({key, value}));
 }
 
 function getTaskExecutionTime(data) {
