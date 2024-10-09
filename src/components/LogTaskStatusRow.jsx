@@ -8,6 +8,12 @@ import {LogLevel} from "./LogLevel.jsx";
 export default function LogTaskStatusRow({info}) {
     const [showExtra, setShowExtra] = useState(false);
 
+    if(!info.data.data) {
+        return <div>
+            {JSON.stringify(info.data)}
+        </div>
+    }
+
     return (
         <div className={"border-b-2"}>
             <div className={"grid grid-cols-7 p-2"}>
