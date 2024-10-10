@@ -3,40 +3,21 @@ import {useState} from "react";
 
 const dropdownTheme = {
     floating: {
-        target: "bg-blue-400 enabled:hover:bg-blue-500 focus:ring-0 rounded-md",
+        target: "bg-blue-400 enabled:hover:bg-blue-500 focus:ring-0 rounded-md me-2",
     }
 }
 
-export default function DropdownFilter({setStatusFilter}) {
-    const [selected, setSelected] = useState("All");
-    const updateSelected = (value) => {
-        switch(value) {
-            case 'Task Status': {
-                setStatusFilter("TASK_STATUS");
-                break;
-            }
-            case 'Debug': {
-                setStatusFilter("DEBUG");
-                break;
-            }
-            case 'Error': {
-                setStatusFilter("ERROR");
-                break;
-            }
-            default: {
-                setStatusFilter("");
-                break;
-            }
-        }
+export default function DropdownFilter({filterOptions, setStatusFilter}) {
+    const [selected, setSelected] = useState("Select Filter");
 
-        setSelected(value);
-    }
     return (
         <Dropdown theme={dropdownTheme} label={selected} dismissOnClick={true}>
-            <Dropdown.Item onClick={() => updateSelected("All")}>All</Dropdown.Item>
-            <Dropdown.Item onClick={() => updateSelected("Task Status")}>Task Status</Dropdown.Item>
-            <Dropdown.Item onClick={() => updateSelected("Debug")}>Debug</Dropdown.Item>
-            <Dropdown.Item onClick={() => updateSelected("Error")}>Error</Dropdown.Item>
+            {filterOptions.map((option, index) => (
+                <Dropdown.Item key={index} onClick={() => {
+                    setStatusFilter(option.id);
+                    setSelected(option.name);
+                }}>{option.name}</Dropdown.Item>
+            ))}
         </Dropdown>
     );
 }
