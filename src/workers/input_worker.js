@@ -1,5 +1,4 @@
-console.log("Created 2")
-
+// handles reading in log from file
 onmessage = function(e) {
 
     const json = e.data;

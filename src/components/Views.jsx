@@ -19,7 +19,6 @@ export default function Views({logs, connected, fileSelect}) {
             _logs = [...logs];
         }
 
-        console.log(_logs);
         if(filter === "TASK_STATUS") {
             if(tFilter.length !== 0 && tFilter !== "ALL") {
                 _logs = _logs.filter(log => log.data.task_status === tFilter);
@@ -41,7 +40,7 @@ export default function Views({logs, connected, fileSelect}) {
                 logView ?
                     <LogView logs={filterLogs(logs, statusFilter, taskFilter, messageFilter)} />
                     :
-                    <TaskTimings logs={filterLogs(logs, statusFilter, messageFilter)} />
+                    <TaskTimings logs={filterLogs(logs, statusFilter, taskFilter, messageFilter)} />
             }
         </>
     )

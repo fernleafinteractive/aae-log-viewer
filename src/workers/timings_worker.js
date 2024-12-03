@@ -1,5 +1,4 @@
-console.log("Created timings worker")
-
+// handles converting logs to a mapping of timing reports
 onmessage = function(e) {
 
     const logs = e.data;
