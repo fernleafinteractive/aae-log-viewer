@@ -15,6 +15,8 @@ function friendlyLogLevel(logLevel) {
             return <div className={"bg-gray-400 text-white max-w-[10rem] text-center rounded-md"}>Debug</div>;
         case 'ERROR':
             return <div className={"bg-red-400 text-white max-w-[10rem] text-center rounded-md"}>Error</div>;
+        case 'WARNING':
+            return <div className={"bg-yellow-400 text-white max-w-[10rem] text-center rounded-md"}>Warning</div>;
         case 'IDLE':
             return <div className={"bg-orange-400 text-white max-w-[10rem] text-center rounded-md"}>Idle</div>;
         case 'SKIPPED':
