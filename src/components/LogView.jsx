@@ -1,10 +1,5 @@
-import {useEffect, useState} from "react";
 import LogTaskStatusRow from "./LogTaskStatusRow.jsx";
 import LogDebugRow from "./LogDebugRow.jsx";
-import {getLogTime} from "../log_utils.js";
-import {LogLevel} from "./LogLevel.jsx";
-import MoreIcon from "./MoreIcon.jsx";
-import RowExtras from "./RowExtras.jsx";
 
 export default function LogView({logs}) {
 

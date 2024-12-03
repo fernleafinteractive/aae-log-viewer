@@ -1,20 +1,23 @@
-import {useEffect, useState} from "react";
-
+import {useCallback, useEffect, useState} from "react";
 import {socket} from "./socket.js";
-
 import Views from "./components/Views.jsx";
-import {stringToColor} from "./log_utils.js";
 
 function App() {
 
     const [logs, setLogs] = useState([]);
-
     const [connected, setConnected] = useState(false);
+
+    const [worker, setWorker] = useState(null);
 
     useEffect(() => {
 
+        const myWorker = new Worker(new URL("./workers/input_worker.js", import.meta.url));
 
-        // setLogs(SAMPLE_LOG);
+        myWorker.onmessage = (event) => {
+            setLogs(event.data);
+        }
+
+        setWorker(myWorker);
 
         function onConnect() {
             console.log("connected");
@@ -43,24 +46,26 @@ function App() {
             socket.off('connect', onConnect);
             socket.off('disconnect', onDisconnect);
             socket.off('data', onData);
+
+            myWorker.terminate();
         }
     }, []);
 
-    const fileSelect = async (e) => {
+    const fileSelect = useCallback(async (e) => {
+        if(worker === null) {
+            console.error("worker is not setup");
+            return;
+        }
+
         e.preventDefault();
+        if(e.target.files.length === 0) return;
+
         const file = e.target.files[0];
         const text = await file.text();
         const json = JSON.parse(text);
+        worker.postMessage(json);
 
-        const output = [];
-        for(const k of Object.keys(json)) {
-            const oldObject = json[k];
-            const newObject = {};
-            delete Object.assign(newObject, oldObject, {["data"]: oldObject["json_params"] })["json_params"];
-            output.push(newObject);
-        }
-        setLogs(output);
-    }
+    }, [worker]);
 
   return (
       <div className={"px-24"} style={{height: '100%'}}>
