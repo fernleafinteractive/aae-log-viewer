@@ -82,7 +82,7 @@ export default function FilterBar({logs, statusFilter, setStatusFilter, setTaskF
 
             <label className="ms-auto me-4 text-white font-semibold px-3 py-2 rounded-md bg-gray-500 hover:bg-gray-600 hover:cursor-pointer ring-1 ring-gray-500 focus-within:ring-2 focus-within:ring-indigo-500" aria-label={"Upload log file"}>
                 <UploadIcon />
-                <input type="file" className="focus:outline-none hidden" onChange={fileSelect} />
+                <input type="file" className="focus:outline-none hidden" onChange={fileSelect} multiple={true} />
             </label>
             <div className={"flex items-center justify-between bg-gray-200 p-2 rounded-md"}>
                 Connection <div className={`p-1 animate-pulse rounded-[180px] ${connected ? 'bg-green-500' : 'bg-red-500'} ms-2`}></div>

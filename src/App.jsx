@@ -60,10 +60,7 @@ function App() {
         e.preventDefault();
         if(e.target.files.length === 0) return;
 
-        const file = e.target.files[0];
-        const text = await file.text();
-        const json = JSON.parse(text);
-        worker.postMessage(json);
+        worker.postMessage(e.target.files);
 
     }, [worker]);
 
