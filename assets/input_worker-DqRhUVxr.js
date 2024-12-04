@@ -1,0 +1,1 @@
+(function(){"use strict";onmessage=async function(n){const c=n.data,s=[];for(const a of c){const f=await a.text(),t=JSON.parse(f);for(const i of Object.keys(t)){const o=t[i],e={};delete Object.assign(e,o,{data:o.json_params}).json_params,s.push(e)}}postMessage(s)}})();
