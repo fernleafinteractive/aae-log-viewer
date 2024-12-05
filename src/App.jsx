@@ -1,6 +1,7 @@
 import {useCallback, useEffect, useState} from "react";
 import {socket} from "./socket.js";
 import Views from "./components/Views.jsx";
+import TaskGraph from "./components/TaskGraph.jsx";
 
 function App() {
 
@@ -66,6 +67,8 @@ function App() {
 
   return (
       <div className={"px-24"} style={{height: '100%'}}>
+
+          <TaskGraph />
 
           <Views
               logs={logs}
