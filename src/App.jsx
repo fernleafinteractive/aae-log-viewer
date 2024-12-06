@@ -67,14 +67,14 @@ function App() {
 
   return (
       <div className={"px-24"} style={{height: '100%'}}>
-
-          <TaskGraph />
-
           <Views
               logs={logs}
               connected={connected}
               fileSelect={fileSelect}
           />
+
+          <TaskGraph />
+
       </div>
   )
 }
