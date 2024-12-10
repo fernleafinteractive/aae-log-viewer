@@ -1,80 +1,28 @@
 import {useCallback, useEffect, useState} from "react";
-import {socket} from "./socket.js";
 import Views from "./components/Views.jsx";
 import TaskGraph from "./components/TaskGraph.jsx";
 
 function App() {
-
-    const [logs, setLogs] = useState([]);
-    const [connected, setConnected] = useState(false);
-
-    const [worker, setWorker] = useState(null);
-
-    useEffect(() => {
-
-        const myWorker = new Worker(new URL("./workers/input_worker.js", import.meta.url));
-
-        myWorker.onmessage = (event) => {
-            setLogs(event.data);
-        }
-
-        setWorker(myWorker);
-
-        function onConnect() {
-            console.log("connected");
-            setConnected(true);
-        }
-
-        function onDisconnect() {
-            console.log("disconnected");
-            setConnected(false);
-        }
-
-        function onData(data) {
-            try {
-                const jsonData = JSON.parse(data);
-                setLogs((prevLogs) => [...prevLogs, jsonData]);
-            } catch(e) {
-                console.error(data);
-            }
-        }
-
-        socket.on('connect', onConnect);
-        socket.on('disconnect', onDisconnect);
-        socket.on('data', onData);
-
-        return () => {
-            socket.off('connect', onConnect);
-            socket.off('disconnect', onDisconnect);
-            socket.off('data', onData);
-
-            myWorker.terminate();
-        }
-    }, []);
-
-    const fileSelect = useCallback(async (e) => {
-        if(worker === null) {
-            console.error("worker is not setup");
-            return;
-        }
-
-        e.preventDefault();
-        if(e.target.files.length === 0) return;
-
-        worker.postMessage(e.target.files);
-
-    }, [worker]);
+    // LOG_VIEW, TASK_GRAPH
+    const [view, setView] = useState('LOG_VIEW');
 
   return (
-      <div className={"px-24"} style={{height: '100%'}}>
-          <Views
-              logs={logs}
-              connected={connected}
-              fileSelect={fileSelect}
-          />
+      <div className={"flex flex-col px-24 h-[100%]"}>
+        <div className={"basis-auto"}>
+          <div className={"my-4 p-2 rounded-md bg-gray-200"}>
+              <ul className={"flex items-center"} style={{fontSize: "1rem"}}>
+                  <li className={`me-4 hover:cursor-pointer ${view === 'LOG_VIEW' ? "text-blue-500 underline" : "text-black"}`} onClick={() => setView('LOG_VIEW')}>Log View</li>
+                  <li className={`me-4 hover:cursor-pointer ${view === 'TASK_GRAPH' ? "text-blue-500 underline" : "text-black"}`} onClick={() => setView('TASK_GRAPH')}>Task Graph</li>
+              </ul>
+          </div>
 
-          <TaskGraph />
-
+          {
+              view === 'LOG_VIEW' ?
+                  <Views />
+                  :
+                  <TaskGraph/>
+          }
+        </div>
       </div>
   )
 }

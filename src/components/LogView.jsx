@@ -10,7 +10,7 @@ export default function LogView({logs}) {
     }
 
     return (
-        <>
+        <div>
             <div className={"border-b-2"}>
                 <div className={"grid grid-cols-7 p-2 font-bold"}>
                     <div className={"col-span-1"}>Timestamp</div>
@@ -26,7 +26,7 @@ export default function LogView({logs}) {
                     :
                     <LogDebugRow key={index} info={log} />
             ))}
-        </>
+        </div>
     )
 
 }
