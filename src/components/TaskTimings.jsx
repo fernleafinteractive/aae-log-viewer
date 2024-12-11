@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {stringToColor} from "../log_utils.js";
 import ErrorIcon from "./ErrorIcon.jsx";
 import Loading from "./Loading.jsx";
@@ -6,48 +6,14 @@ import ChevronUp from "./ChevronUp.jsx";
 import ChevronDown from "./ChevronDown.jsx";
 import LogTaskStatusRow from "./LogTaskStatusRow.jsx";
 
-export default function TaskTimings({logs}) {
+import {didTaskFail, isTaskRunning, getTaskExecutionTime} from "../utils/task_utils.js";
 
-    const [mapping, setMapping] = useState([]);
-    const [totalExecutionTime, setTotalExecutionTime] = useState(0);
-    const [loading, setLoading] = useState(false);
+export default function TaskTimings({mapping, totalExecutionTime}) {
 
-    const [worker, setWorker] = useState(null);
-
-    useEffect(() => {
-
-        const myWorker = new Worker(new URL("./../workers/timings_worker.js", import.meta.url));
-
-        myWorker.onmessage = (event) => {
-            setMapping(event.data.mapping);
-            setTotalExecutionTime(event.data.totalExecutionTime);
-            setLoading(false);
-        }
-
-        setWorker(myWorker);
-
-        return () => {
-            myWorker.terminate();
-        }
-    }, []);
-
-    useEffect(() => {
-
-        if(worker === null) return;
-        if(logs.length === 0) {
-            setMapping([]);
-            setTotalExecutionTime(0);
-            return;
-        }
-        setLoading(true);
-        worker.postMessage(logs);
-
-    }, [logs, worker])
-
-    if(loading) {
+    if(mapping.length === 0) {
         return (
         <div className={"flex flex-1 items-center justify-center"}>
-            <Loading />
+            No data
         </div>
         )
     }
@@ -105,30 +71,3 @@ function Timing({taskId, tasks}) {
 
 }
 
-function getTaskExecutionTime(data) {
-    const timestamps = data.map(d => d.data.timestamp);
-    const min = Math.min(...timestamps);
-    const max = Math.max(...timestamps);
-
-    return max - min;
-}
-
-function didTaskFail(data) {
-    for(const task of data) {
-        if (task.data.task_status === 'FAILED') {
-            return true;
-        }
-    }
-
-    return false;
-}
-
-function isTaskRunning(data) {
-    for(const task of data) {
-        if (task.data.task_status === 'COMPLETE' || task.data.task_status === 'FAILED') {
-            return false;
-        }
-    }
-
-    return true;
-}

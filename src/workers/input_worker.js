@@ -1,7 +1,6 @@
 // handles reading in log from file
 onmessage = async function(e) {
 
-
     const files = e.data;
     const output = [];
 
