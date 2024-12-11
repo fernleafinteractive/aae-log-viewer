@@ -13,6 +13,8 @@ export default function TaskGraph(props) {
     const [data, setData] = useState(null);
 
     const [worker, setWorker] = useState(null);
+    const [selectedNode, setSelectedNode] = useState(null);
+    const [inputField, setInputField] = useState("");
 
     const cyRef = useRef(null);
     const selectedNodeRef = useRef(null);
@@ -58,14 +60,14 @@ export default function TaskGraph(props) {
                     selector: 'node',
                     style: {
                         'label': 'data(id)',
-                        'background-color': function(element) {
-                            return element.outgoers().edges().length > 0 ? '#2e80c7' : '#2ec770';
-                        },
+                        'background-color': '#ef7d2c',
                         'color': '#000000',
                         'width': '100px',
-                        'shape': 'rectangle',
-                        'text-valignment': 'center',
-                        'text-halignment': 'center'
+                        'shape': 'round-rectangle',
+                        'border-width': '4px',
+                        'border-color': function(element) {
+                            return element.outgoers().edges().length === 0 ? '#7a06b0' : 'rgba(119,119,119,0)';
+                        }
                     }
                 },
                 {
@@ -90,16 +92,27 @@ export default function TaskGraph(props) {
             }
         });
 
-        window.cyto = cy;
-
         cy.on('tap', 'node', (event) => {
             const node = event.target;
-            if(selectedNodeRef.current !== null && selectedNodeRef.current.data.id === node._private.data.id) {
-                node.style('background-color', selectedNodeRef.current.backgroundColor);
-                selectedNodeRef.current = null;
-                return;
+
+            if(selectedNodeRef.current !== null) {
+                if(selectedNodeRef.current.data.id === node._private.data.id) {
+                    node.style('background-color', selectedNodeRef.current.backgroundColor);
+                    selectedNodeRef.current = null;
+                    setSelectedNode(null);
+                    return;
+                }
+
+                const currentNode = cy.nodes().find((el) => {
+                    return el.data('id') === selectedNodeRef.current.data.id;
+                });
+
+                if(currentNode) {
+                    currentNode.style('background-color', selectedNodeRef.current.backgroundColor);
+                }
             }
 
+            setSelectedNode(node._private.data);
             selectedNodeRef.current = {
                 data: node._private.data,
                 backgroundColor: node.style('background-color')
@@ -130,11 +143,19 @@ export default function TaskGraph(props) {
 
     }, [data, logMappingContext.data]);
 
+    useEffect(() => {
+
+
+
+    }, [inputField]);
+
     return (
         <div>
-            <div className={"flex items-center my-4 py-4 border-b-2"}>
+            <div className={"flex items-center my-4 py-4"}>
+                <input type={"text"} className={"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"} value={inputField} onChange={() => setInputField(e.target.value)} placeholder={"Search by task ID"}
+                />
                 <label
-                    className="ms-auto me-4 text-white font-semibold px-3 py-2 rounded-md bg-gray-500 hover:bg-gray-600 hover:cursor-pointer ring-1 ring-gray-500 focus-within:ring-2 focus-within:ring-indigo-500"
+                    className="ms-auto text-white font-semibold px-3 py-2 rounded-md bg-gray-500 hover:bg-gray-600 hover:cursor-pointer ring-1 ring-gray-500 focus-within:ring-2 focus-within:ring-indigo-500"
                     aria-label={"Upload log file"}>
                     <UploadIcon/>
                     <input type="file" className="focus:outline-none hidden" onChange={fileSelect} multiple={true}/>
@@ -145,7 +166,7 @@ export default function TaskGraph(props) {
                 <div ref={cyRef}
                      style={{width: '100%', height: "85vh", border: "2px solid #e5e7eb", borderRadius: "0.5rem"}}></div>
                 <div style={{
-                    display: selectedNodeRef.current === null ? 'block' : 'none',
+                    display: selectedNode !== null ? 'block' : 'none',
                     position: 'absolute',
                     bottom: 0,
                     left: 0,
@@ -155,20 +176,20 @@ export default function TaskGraph(props) {
                     borderRadius: "0.5rem"
                 }}>
                     {
-                        selectedNodeRef.current !== null ?
+                        selectedNode !== null ?
                             <div>
-                                {Object.keys(selectedNodeRef.current.data).map((k, index) => (
-                                    <div>
+                                {Object.keys(selectedNode).map((k, index) => (
+                                    <div key={index}>
                                         {
-                                            typeof selectedNodeRef.current.data[k] === 'object' ?
-                                                Object.keys(selectedNodeRef.current.data[k]).map((obj, idx) => (
+                                            typeof selectedNode[k] === 'object' ?
+                                                Object.keys(selectedNode[k]).map((obj, idx) => (
                                                     <div key={idx} className={"ms-2 flex items-center"}>
                                                         <div className={"font-bold me-2"}>{obj}:</div>
-                                                        <div>{JSON.stringify(selectedNodeRef.current.data[k][obj])}</div>
+                                                        <div>{JSON.stringify(selectedNode[k][obj])}</div>
                                                     </div>
                                                 ))
                                                 :
-                                                <div className={""}>{selectedNodeRef.current.data[k]}</div>
+                                                <div className={""}>{selectedNode[k]}</div>
                                         }
                                     </div>
                                 ))
