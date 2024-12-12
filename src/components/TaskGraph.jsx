@@ -17,6 +17,7 @@ export default function TaskGraph(props) {
     const [inputField, setInputField] = useState("");
 
     const cyRef = useRef(null);
+    const cyContainerRef = useRef(null);
     const selectedNodeRef = useRef(null);
 
     const fileSelect = useCallback(async (e) => {
@@ -54,7 +55,7 @@ export default function TaskGraph(props) {
 
         const cy = cytoscape({
             elements: data.elements,
-            container: cyRef.current,
+            container: cyContainerRef.current,
             style: [
                 {
                     selector: 'node',
@@ -92,6 +93,7 @@ export default function TaskGraph(props) {
             }
         });
 
+        cyRef.current = cy;
         cy.on('tap', 'node', (event) => {
             const node = event.target;
 
@@ -145,14 +147,22 @@ export default function TaskGraph(props) {
 
     useEffect(() => {
 
+        if(cyRef.current === null) return;
 
+        if(inputField.length < 6) return;
+
+        const nodes = cyRef.current.nodes().filter((el) => {
+            return el.data('id').includes(inputField);
+        });
+
+        cyRef.current.fit(nodes);
 
     }, [inputField]);
 
     return (
         <div>
             <div className={"flex items-center my-4 py-4"}>
-                <input type={"text"} className={"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"} value={inputField} onChange={() => setInputField(e.target.value)} placeholder={"Search by task ID"}
+                <input type={"text"} className={"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"} value={inputField} onChange={(e) => setInputField(e.target.value)} placeholder={"Search by task ID"}
                 />
                 <label
                     className="ms-auto text-white font-semibold px-3 py-2 rounded-md bg-gray-500 hover:bg-gray-600 hover:cursor-pointer ring-1 ring-gray-500 focus-within:ring-2 focus-within:ring-indigo-500"
@@ -163,7 +173,7 @@ export default function TaskGraph(props) {
             </div>
 
             <div style={{position: 'relative'}}>
-                <div ref={cyRef}
+                <div ref={cyContainerRef}
                      style={{width: '100%', height: "85vh", border: "2px solid #e5e7eb", borderRadius: "0.5rem"}}></div>
                 <div style={{
                     display: selectedNode !== null ? 'block' : 'none',
