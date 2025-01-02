@@ -96,6 +96,15 @@ export default function TaskGraph(props) {
         cyRef.current = cy;
         cy.on('tap', 'node', (event) => {
             const node = event.target;
+            const taskList = [node._private.data.id];
+
+            for(const n of node.successors()) {
+                const id = n.data("id");
+                if(id.includes("-")) continue;
+                taskList.push(id);
+            }
+
+            console.log(taskList);
 
             if(selectedNodeRef.current !== null) {
                 if(selectedNodeRef.current.data.id === node._private.data.id) {
