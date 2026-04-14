@@ -3,7 +3,7 @@ export function getLogInfo() {
 }
 
 export function getLogTime(time) {
-    return new Date(parseInt(time) * 1000).toLocaleString();
+    return new Date(time).toLocaleString();
 }
 
 export function getRandomColor() {
