@@ -3,7 +3,7 @@ import cytoscape from "cytoscape";
 import dagre from "cytoscape-dagre";
 import UploadIcon from "./UploadIcon.jsx";
 import {didTaskFail, isTaskRunning, getTaskExecutionTime} from "../utils/task_utils.js";
-import {LogDataMappingContext} from "../context/LogDataMappingContext.jsx";
+import {LogDataMappingContext} from "../context/LogDataMappingContext";
 
 cytoscape.use(dagre);
 

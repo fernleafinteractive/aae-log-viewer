@@ -1,5 +1,5 @@
 import {useCallback, useEffect, useState} from "react";
-import Views from "./components/Views.jsx";
+import Views from "./components/Views";
 import TaskGraph from "./components/TaskGraph.jsx";
 
 function App() {

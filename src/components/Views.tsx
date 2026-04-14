@@ -1,17 +1,17 @@
 import {useCallback, useContext, useEffect, useState} from "react";
 
-import {LogDataContext} from "../context/LogDataContext.jsx";
+import {useLogData} from "../context/LogDataContext";
+import {useLogDataMapping} from "../context/LogDataMappingContext";
 
 import FilterBar from "./FilterBar.jsx";
 import LogView from "./LogView.jsx";
 import TaskTimings from "./TaskTimings.jsx";
 import {socket} from "../socket.js";
-import {LogDataMappingContext} from "../context/LogDataMappingContext.jsx";
 
 export default function Views() {
 
-    const logContext = useContext(LogDataContext);
-    const mappingContext = useContext(LogDataMappingContext);
+    const {logs, setLogs} = useLogData();
+    const {mapping, totalExecutionTime, setMapping} = useLogDataMapping();
 
     const [connected, setConnected] = useState(false);
 
@@ -65,7 +65,7 @@ export default function Views() {
 
 
         myInputWorker.onmessage = (event) => {
-            logContext.setLogs(event.data);
+            setLogs(event.data);
         }
 
         myMappingWorker.onmessage = (event) => {
@@ -74,7 +74,10 @@ export default function Views() {
                 totalExecutionTime: event.data.totalExecutionTime
             }
 
-            mappingContext.setData(data);
+            setMapping({
+                mapping: data.mapping,
+                totalExecutionTime: data.totalExecutionTime
+            });
         }
 
         setInputWorker(myInputWorker);
@@ -93,7 +96,7 @@ export default function Views() {
         function onData(data) {
             try {
                 const jsonData = JSON.parse(data);
-                logContext.setLogs((prevLogs) => [...prevLogs, jsonData]);
+                setLogs((prevLogs) => [...prevLogs, jsonData]);
             } catch(e) {
                 console.error(data);
             }
@@ -114,22 +117,22 @@ export default function Views() {
     }, []);
 
     useEffect(() => {
-        if(mappingWorker === null || logContext.logs.length === 0) return;
+        if(mappingWorker === null || logs.length === 0) return;
 
-        mappingWorker.postMessage(logContext.logs);
+        mappingWorker.postMessage(logs);
 
-    }, [logContext.logs, mappingWorker]);
+    }, [logs, mappingWorker]);
 
     return (
         <div>
-            <FilterBar logs={logContext.logs} statusFilter={statusFilter} setStatusFilter={setStatusFilter} setTaskFilter={setTaskFilter} setMessageFilter={setMessageFilter} connected={connected} fileSelect={fileSelect} logView={logView} setLogView={setLogView} />
+            <FilterBar logs={logs} statusFilter={statusFilter} setStatusFilter={setStatusFilter} setTaskFilter={setTaskFilter} setMessageFilter={setMessageFilter} connected={connected} fileSelect={fileSelect} logView={logView} setLogView={setLogView} />
 
             <div>
                 {
                     logView ?
-                        <LogView logs={filterLogs(logContext.logs, statusFilter, taskFilter, messageFilter)} />
+                        <LogView logs={filterLogs(logs, statusFilter, taskFilter, messageFilter)} />
                         :
-                        <TaskTimings mapping={mappingContext.data.mapping} totalExecutionTime={mappingContext.data.totalExecutionTime} />
+                        <TaskTimings mapping={mapping} totalExecutionTime={totalExecutionTime} />
                 }
             </div>
         </div>

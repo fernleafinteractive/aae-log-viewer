@@ -7,7 +7,7 @@ import ChevronDown from "./ChevronDown.jsx";
 import LogTaskStatusRow from "./LogTaskStatusRow.jsx";
 import Chart from "react-apexcharts";
 import {didTaskFail, isTaskRunning, getTaskExecutionTime} from "../utils/task_utils.js";
-import {LogDataContext} from "../context/LogDataContext.jsx";
+import {LogDataContext} from "../context/LogDataContext";
 
 export default function TaskTimings({mapping, totalExecutionTime}) {
 
