@@ -1,13 +1,16 @@
 import {useContext, useEffect, useState} from "react";
-import {stringToColor} from "../log_utils.js";
+import Chart from "react-apexcharts";
+
+import {LogDataContext, useLogData} from "../context/LogDataContext";
+
 import ErrorIcon from "./icons/ErrorIcon.jsx";
 import LoadingIcon from "./icons/LoadingIcon.jsx";
 import ChevronUpIcon from "./icons/ChevronUpIcon.jsx";
 import ChevronDownIcon from "./icons/ChevronDownIcon.jsx";
+
 import LogTaskStatusRow from "./LogTaskStatusRow.jsx";
-import Chart from "react-apexcharts";
+import {formatDuration, stringToColor} from "../utils/log_utils.js";
 import {didTaskFail, isTaskRunning, getTaskExecutionTime} from "../utils/task_utils.js";
-import {LogDataContext, useLogData} from "../context/LogDataContext";
 
 export default function TaskTimings({mapping, totalExecutionTime}) {
 
@@ -25,7 +28,7 @@ export default function TaskTimings({mapping, totalExecutionTime}) {
             <MemoryChart graphData={[]} />
 
 
-            <h1 className={"text-xl mb-4 bg-gray-300 p-2 rounded"}>Total execution time: <span className={"font-bold"}>{totalExecutionTime > 1000 ? totalExecutionTime / 1000 : totalExecutionTime}</span> {totalExecutionTime > 1000 ? 'seconds' : 'ms'}</h1>
+            <h1 className={"text-xl mb-4 bg-gray-300 p-2 rounded"}>Total execution time: <span className={"font-bold"}>{formatDuration(totalExecutionTime)}</span></h1>
 
             <div className={"flex items-center rounded"}>
 
@@ -59,7 +62,7 @@ function Timing({taskId, tasks}) {
                         : ''}
                 </div>
                 <div className={"ms-auto me-4"}>{isTaskRunning(tasks) ?
-                    <LoadingIcon/> : `${getTaskExecutionTime(tasks)}ms`}</div>
+                    <LoadingIcon/> : formatDuration(getTaskExecutionTime(tasks))}</div>
                 <button className={"ms-4"} onClick={() => {
                     setShowTimings(!showTimings)
                 }}>
