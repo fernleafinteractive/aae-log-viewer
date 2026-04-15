@@ -1,7 +1,7 @@
 import {useState} from "react";
 
 import {getLogTime} from "../log_utils.js";
-import MoreIcon from "./MoreIcon.jsx";
+import MoreIcon from "./icons/MoreIcon.jsx";
 import RowExtras from "./RowExtras.jsx";
 import {LogLevel} from "./LogLevel.jsx";
 

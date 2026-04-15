@@ -1,6 +1,6 @@
 import InputFilter from "./InputFilter.jsx";
 import DropdownFilter from "./DropdownFilter.jsx";
-import UploadIcon from "./UploadIcon.jsx";
+import UploadIcon from "./icons/UploadIcon.jsx";
 
 export default function FilterBar({logs, statusFilter, setStatusFilter, setTaskFilter, connected, setMessageFilter, fileSelect, logView, setLogView}) {
 

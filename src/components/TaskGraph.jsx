@@ -1,7 +1,7 @@
 import {useRef, useEffect, useState, useCallback, useContext} from "react";
 import cytoscape from "cytoscape";
 import dagre from "cytoscape-dagre";
-import UploadIcon from "./UploadIcon.jsx";
+import UploadIcon from "./icons/UploadIcon.jsx";
 import {didTaskFail, isTaskRunning, getTaskExecutionTime} from "../utils/task_utils.js";
 import {LogDataMappingContext, useLogDataMapping} from "../context/LogDataMappingContext";
 import {useTaskGraph} from "../context/TaskGraphContext";

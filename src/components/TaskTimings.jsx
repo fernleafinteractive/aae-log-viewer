@@ -1,9 +1,9 @@
 import {useContext, useEffect, useState} from "react";
 import {stringToColor} from "../log_utils.js";
-import ErrorIcon from "./ErrorIcon.jsx";
-import Loading from "./Loading.jsx";
-import ChevronUp from "./ChevronUp.jsx";
-import ChevronDown from "./ChevronDown.jsx";
+import ErrorIcon from "./icons/ErrorIcon.jsx";
+import LoadingIcon from "./icons/LoadingIcon.jsx";
+import ChevronUpIcon from "./icons/ChevronUpIcon.jsx";
+import ChevronDownIcon from "./icons/ChevronDownIcon.jsx";
 import LogTaskStatusRow from "./LogTaskStatusRow.jsx";
 import Chart from "react-apexcharts";
 import {didTaskFail, isTaskRunning, getTaskExecutionTime} from "../utils/task_utils.js";
@@ -59,11 +59,11 @@ function Timing({taskId, tasks}) {
                         : ''}
                 </div>
                 <div className={"ms-auto me-4"}>{isTaskRunning(tasks) ?
-                    <Loading/> : `${getTaskExecutionTime(tasks)}ms`}</div>
+                    <LoadingIcon/> : `${getTaskExecutionTime(tasks)}ms`}</div>
                 <button className={"ms-4"} onClick={() => {
                     setShowTimings(!showTimings)
                 }}>
-                    {showTimings ? <ChevronUp/> : <ChevronDown/>}
+                    {showTimings ? <ChevronUpIcon/> : <ChevronDownIcon/>}
                 </button>
 
             </div>
