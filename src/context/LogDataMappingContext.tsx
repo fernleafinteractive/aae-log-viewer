@@ -1,5 +1,5 @@
 import {createContext, useContext, useState} from "react";
-import {LogDataMappingContextType} from '../types/log_type';
+import {LogDataMappingContextType} from '../types/log_types';
 
 type MappingInput = {
     mapping: Object[],
@@ -15,7 +15,6 @@ export const LogDataMappingContextProvider = (props) => {
     })
 
     const setMapping = (data : MappingInput) => {
-        console.log(data)
         setState({
             mapping: data.mapping,
             totalExecutionTime: data.totalExecutionTime

@@ -3,14 +3,15 @@ import cytoscape from "cytoscape";
 import dagre from "cytoscape-dagre";
 import UploadIcon from "./UploadIcon.jsx";
 import {didTaskFail, isTaskRunning, getTaskExecutionTime} from "../utils/task_utils.js";
-import {LogDataMappingContext} from "../context/LogDataMappingContext";
+import {LogDataMappingContext, useLogDataMapping} from "../context/LogDataMappingContext";
+import {useTaskGraph} from "../context/TaskGraphContext";
 
 cytoscape.use(dagre);
 
 export default function TaskGraph(props) {
 
-    const logMappingContext = useContext(LogDataMappingContext);
-    const [data, setData] = useState(null);
+    const {mapping, totalExecutionTime, setMapping} = useLogDataMapping();
+    const {data, setTaskGraph} = useTaskGraph();
 
     const [worker, setWorker] = useState(null);
     const [selectedNode, setSelectedNode] = useState(null);
@@ -38,7 +39,7 @@ export default function TaskGraph(props) {
         const myWorker = new Worker(new URL(".././workers/task_graph_worker.js", import.meta.url));
 
         myWorker.onmessage = (event) => {
-            setData(event.data);
+            setTaskGraph(event.data);
         }
 
         setWorker(myWorker);
@@ -131,8 +132,8 @@ export default function TaskGraph(props) {
             node.style('background-color', '#d6c529');
         });
 
-        if(logMappingContext.data.mapping.length > 0) {
-            for(const task of logMappingContext.data.mapping) {
+        if(mapping.length > 0) {
+            for(const task of mapping) {
 
                 const node = cy.nodes().find((el) => {
                     return el.data('id') === task.key;
@@ -152,7 +153,7 @@ export default function TaskGraph(props) {
             }
         }
 
-    }, [data, logMappingContext.data]);
+    }, [data, mapping]);
 
     useEffect(() => {
 

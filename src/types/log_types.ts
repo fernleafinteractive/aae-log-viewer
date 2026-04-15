@@ -1,6 +1,6 @@
 export type LogLevel = "DEBUG" | "INFO" | "WARNING" | "ERROR" | "TASK_STATUS" | "UNKNOWN";
 
-export type LogData = {
+export type LogDataType = {
     json_params: Object;
     log_level: LogLevel;
     message: string;

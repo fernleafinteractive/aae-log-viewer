@@ -1,18 +1,18 @@
 import {createContext, useContext, useState} from "react";
-import {LogData, LogLevel} from "../types/log_type";
+import {LogDataType, LogLevel} from "../types/log_types";
 
 type LogDataContextType = {
-    logs: LogData[];
-    setLogs: (logs: LogData[]) => void;
+    logs: LogDataType[];
+    setLogs: (logs: LogDataType[]) => void;
 }
 
 export const LogDataContext = createContext<LogDataContextType>(null);
 
 export const LogDataContextProvider = ({children}) => {
 
-    const [state, setState] = useState<LogData[]>([]);
+    const [state, setState] = useState<LogDataType[]>([]);
 
-    const setLogs = (logs: LogData[]) => {
+    const setLogs = (logs: LogDataType[]) => {
         setState([...state, ...logs]);
     }
 

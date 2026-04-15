@@ -7,7 +7,7 @@ import ChevronDown from "./ChevronDown.jsx";
 import LogTaskStatusRow from "./LogTaskStatusRow.jsx";
 import Chart from "react-apexcharts";
 import {didTaskFail, isTaskRunning, getTaskExecutionTime} from "../utils/task_utils.js";
-import {LogDataContext} from "../context/LogDataContext";
+import {LogDataContext, useLogData} from "../context/LogDataContext";
 
 export default function TaskTimings({mapping, totalExecutionTime}) {
 
@@ -130,13 +130,13 @@ function MemoryChart() {
         data: []
     });
 
-    const logContext = useContext(LogDataContext);
+    const {logs} = useLogData();
 
     useEffect(() => {
-        const filteredLogs = logContext.logs.filter(l => l.data && l.data.memory_info);
+        const filteredLogs = logs.filter(l => l.data && l.data.memory_info);
         filteredLogs.sort((a, b) => parseInt(a.data.timestamp) - parseInt(b.data.timestamp));
 
-        const unloadedTimestamp = logContext.logs.filter(l => l.message.toLowerCase().includes("unloaded dataframe"));
+        const unloadedTimestamp = logs.filter(l => l.message.toLowerCase().includes("unloaded dataframe"));
         unloadedTimestamp.sort((a, b) => parseInt(a.data.timestamp) - parseInt(b.data.timestamp));
         // console.log(unloadedTimestamp);
 
@@ -168,6 +168,8 @@ function MemoryChart() {
             data: unloadedSeries
         });
 
+        console.log(filteredLogs);
+
         setGraphData({
             xAxis,
             series,
@@ -175,7 +177,7 @@ function MemoryChart() {
         });
 
 
-    }, [logContext.logs])
+    }, [logs])
 
     useEffect(() => {
 

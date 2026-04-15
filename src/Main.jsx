@@ -5,12 +5,15 @@ import App from './App.jsx'
 import './styles.css'
 import {LogDataContextProvider} from "./context/LogDataContext";
 import {LogDataMappingContextProvider} from "./context/LogDataMappingContext";
+import {TaskGraphContextProvider} from "./context/TaskGraphContext";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
       <LogDataContextProvider>
           <LogDataMappingContextProvider>
-            <App />
+              <TaskGraphContextProvider>
+                  <App />
+              </TaskGraphContextProvider>
           </LogDataMappingContextProvider>
       </LogDataContextProvider>
   </React.StrictMode>,
