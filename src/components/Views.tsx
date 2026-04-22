@@ -124,10 +124,10 @@ export default function Views() {
     }, [logs, mappingWorker]);
 
     return (
-        <div>
+        <div className="h-screen border-2 border-green-500 grow grid grid-rows-[auto_1fr]">
             <FilterBar logs={logs} statusFilter={statusFilter} setStatusFilter={setStatusFilter} setTaskFilter={setTaskFilter} setMessageFilter={setMessageFilter} connected={connected} fileSelect={fileSelect} logView={logView} setLogView={setLogView} />
 
-            <div>
+            <div className={"overflow-y-auto"}>
                 {
                     logView ?
                         <LogView logs={filterLogs(logs, statusFilter, taskFilter, messageFilter)} />
