@@ -1,0 +1,1 @@
+export type ViewType = 'LOGS' | 'TASK_EXECUTION' | 'MEMORY_VIEW' | 'TASK_GRAPH';
