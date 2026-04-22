@@ -27,7 +27,7 @@ export default function TaskTimings({mapping, totalExecutionTime}) {
 
             <MemoryChart graphData={[]} />
 
-
+            <h1>{totalExecutionTime}</h1>
             <h1 className={"text-xl mb-4 bg-gray-300 p-2 rounded"}>Total execution time: <span className={"font-bold"}>{formatDuration(totalExecutionTime)}</span></h1>
 
             <div className={"flex items-center rounded"}>
@@ -170,8 +170,6 @@ function MemoryChart() {
             name: "Unloaded event",
             data: unloadedSeries
         });
-
-        console.log(filteredLogs);
 
         setGraphData({
             xAxis,

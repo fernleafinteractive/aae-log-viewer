@@ -105,8 +105,6 @@ export default function TaskGraph(props) {
                 taskList.push(id);
             }
 
-            console.log(taskList);
-
             if(selectedNodeRef.current !== null) {
                 if(selectedNodeRef.current.data.id === node._private.data.id) {
                     node.style('background-color', selectedNodeRef.current.backgroundColor);

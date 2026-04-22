@@ -11,34 +11,37 @@ onmessage = function(e) {
         return;
     }
 
-    const mapping = groupTasksById(logs);
-    const totalExecutionTime = getTotalExecutionTime(mapping);
+    const taskLogData = logs.filter(log => log.log_level === 'TASK_STATUS');
+    const taskMapping = new Map();
+
+    let minTimestamp = Number.MAX_VALUE;
+    let maxTimestamp = Number.MIN_VALUE;
+
+    for(const taskLog of taskLogData) {
+        const taskId = taskLog.data.data.task_id;
+        const timestamp = taskLog.data.timestamp;
+
+        minTimestamp = Math.min(minTimestamp, timestamp);
+        maxTimestamp = Math.max(maxTimestamp, timestamp);
+
+        if (!taskMapping.has(taskId)) {
+            taskMapping.set(taskId, []);
+        }
+
+        taskMapping.get(taskId).push(taskLog);
+    }
+
+    let sortedByExecutionMapping = new Map([...taskMapping.entries()].sort((a, b) => {
+        return getTaskExecutionTime(b[1]) - getTaskExecutionTime(a[1]);
+    }))
+
+    const mapping = Array.from(sortedByExecutionMapping, ([key, value]) => ({key, value}));
+    const totalExecutionTime = maxTimestamp - minTimestamp;
 
     postMessage({
         mapping,
         totalExecutionTime
     });
-}
-
-
-function groupTasksById(logs) {
-    const filtered = logs.filter(log => log.log_level === 'TASK_STATUS');
-    const map = new Map();
-
-    for (const log of filtered) {
-        const taskId = log.data.data.task_id;
-        if (!map.has(taskId)) {
-            map.set(taskId, []);
-        }
-
-        map.get(taskId).push(log);
-    }
-
-    let s = new Map([...map.entries()].sort((a, b) => {
-        return getTaskExecutionTime(b[1]) - getTaskExecutionTime(a[1]);
-    }))
-
-    return Array.from(s, ([key, value]) => ({key, value}));
 }
 
 function getTaskExecutionTime(data) {
@@ -47,12 +50,4 @@ function getTaskExecutionTime(data) {
     const max = Math.max(...timestamps);
 
     return max - min;
-}
-
-function getTotalExecutionTime(data) {
-    let sum = 0;
-    for(const d of data) {
-        sum += getTaskExecutionTime(d.value);
-    }
-    return sum;
 }
