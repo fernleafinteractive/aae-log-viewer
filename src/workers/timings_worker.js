@@ -42,6 +42,8 @@ onmessage = function(e) {
         mapping,
         totalExecutionTime
     });
+
+    console.log("Loaded timings data");
 }
 
 function getTaskExecutionTime(data) {

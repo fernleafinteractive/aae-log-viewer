@@ -7,15 +7,17 @@ import FilterBar from "./FilterBar.jsx";
 import LogView from "./LogView.jsx";
 import TaskTimings from "./TaskTimings.jsx";
 import {socket} from "../socket.js";
+import {useFileInputWorker} from "../context/FileInputWorkerContext";
 
 export default function Views() {
 
     const {logs, setLogs} = useLogData();
+    const {worker, setWorker} = useFileInputWorker();
+
     const {mapping, totalExecutionTime, setMapping} = useLogDataMapping();
 
     const [connected, setConnected] = useState(false);
 
-    const [inputWorker, setInputWorker] = useState(null);
     const [mappingWorker, setMappingWorker] = useState(null);
 
     const [logView, setLogView] = useState(true);
@@ -45,8 +47,8 @@ export default function Views() {
         return _logs;
     }
 
-    const fileSelect = useCallback(async (e) => {
-        if(inputWorker === null) {
+    /*const fileSelect = useCallback(async (e) => {
+        if(worker === null) {
             console.error("worker is not setup");
             return;
         }
@@ -54,19 +56,26 @@ export default function Views() {
         e.preventDefault();
         if(e.target.files.length === 0) return;
 
-        inputWorker.postMessage(e.target.files);
+        worker.postMessage(e.target.files);
 
-    }, [inputWorker]);
+    }, [worker]);*/
+
+    const fileSelect = async (e) => {
+        if(worker === null) {
+            console.error("worker is not setup");
+            return;
+        }
+
+        e.preventDefault();
+        if(e.target.files.length === 0) return;
+
+        worker.postMessage(e.target.files);
+    };
 
     useEffect(() => {
 
-        const myInputWorker = new Worker(new URL(".././workers/input_worker.js", import.meta.url));
         const myMappingWorker = new Worker(new URL("./../workers/timings_worker.js", import.meta.url));
 
-
-        myInputWorker.onmessage = (event) => {
-            setLogs(event.data);
-        }
 
         myMappingWorker.onmessage = (event) => {
             const data = {
@@ -80,7 +89,6 @@ export default function Views() {
             });
         }
 
-        setInputWorker(myInputWorker);
         setMappingWorker(myMappingWorker);
 
         function onConnect() {
@@ -111,7 +119,6 @@ export default function Views() {
             socket.off('disconnect', onDisconnect);
             socket.off('data', onData);
 
-            myInputWorker.terminate();
             myMappingWorker.terminate();
         }
     }, []);
