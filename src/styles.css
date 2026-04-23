@@ -13,7 +13,9 @@ html, body, #root {
     font-family: "Poppins", sans-serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 0.9rem !important;
+    font-size: 1rem !important;
+    background-color: #181818;
+    color: white;
 }
 
 .log-row {
@@ -44,4 +46,9 @@ html, body, #root {
 
 .text-node {
     font-size: 0.8rem !important;
+}
+
+.selected-nav {
+    /*background-color: #2bb380;
+    padding: 0.25rem 2rem;*/
 }

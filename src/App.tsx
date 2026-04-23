@@ -28,6 +28,7 @@ export default function App() {
 
     const [mappingWorker, setMappingWorker] = useState(null);
 
+
     useEffect(() => {
         /*const myMappingWorker = new Worker(new URL("./../workers/timings_worker.js", import.meta.url));*/
 
@@ -49,14 +50,15 @@ export default function App() {
             myMappingWorker.terminate();
         }*/
 
+
     }, []);
 
     return (
         <div className={"px-24 h-[100%]"}>
 
             <div className={"flex"}>
-                <SidebarNavigation setView={setView}/>
-                <div className={"h-screen border-2 border-green-500 grow grid grid-rows-[auto_1fr]"}>
+                <SidebarNavigation view={view} setView={setView}/>
+                <div className={"h-screen grow grid grid-rows-[auto_1fr]"}>
                     {getViewByType(view)}
                 </div>
             </div>

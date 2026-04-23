@@ -7,12 +7,11 @@ import FilterBar from "./FilterBar.jsx";
 import LogView from "./LogView.jsx";
 import TaskTimings from "./TaskTimings.jsx";
 import {socket} from "../socket.js";
-import {useFileInputWorker} from "../context/FileInputWorkerContext";
 
 export default function Views() {
 
     const {logs, setLogs} = useLogData();
-    const {worker, setWorker} = useFileInputWorker();
+    // const {worker} = useFileInputWorker();
 
     const {mapping, totalExecutionTime, setMapping} = useLogDataMapping();
 
@@ -46,31 +45,6 @@ export default function Views() {
 
         return _logs;
     }
-
-    /*const fileSelect = useCallback(async (e) => {
-        if(worker === null) {
-            console.error("worker is not setup");
-            return;
-        }
-
-        e.preventDefault();
-        if(e.target.files.length === 0) return;
-
-        worker.postMessage(e.target.files);
-
-    }, [worker]);*/
-
-    const fileSelect = async (e) => {
-        if(worker === null) {
-            console.error("worker is not setup");
-            return;
-        }
-
-        e.preventDefault();
-        if(e.target.files.length === 0) return;
-
-        worker.postMessage(e.target.files);
-    };
 
     useEffect(() => {
 
@@ -132,7 +106,7 @@ export default function Views() {
 
     return (
         <>
-            <FilterBar logs={logs} statusFilter={statusFilter} setStatusFilter={setStatusFilter} setTaskFilter={setTaskFilter} setMessageFilter={setMessageFilter} connected={connected} fileSelect={fileSelect} logView={logView} setLogView={setLogView} />
+            <FilterBar logs={logs} statusFilter={statusFilter} setStatusFilter={setStatusFilter} setTaskFilter={setTaskFilter} setMessageFilter={setMessageFilter} connected={connected} logView={logView} setLogView={setLogView} />
 
             <div className={"overflow-y-auto"}>
                 <LogView logs={filterLogs(logs, statusFilter, taskFilter, messageFilter)} />
