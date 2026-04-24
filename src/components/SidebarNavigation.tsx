@@ -48,16 +48,16 @@ export default function SidebarNavigation({view, setView}) {
                 <UploadField fileSelect={fileSelect} />
 
                 <ul className={"whitespace-nowrap text-left border-t-[2px] border-[#363A45] mt-3 pt-3"}>
-                    <li className={`px-4 py-0.5 mb-1 ${isSelectedView(view, "LOGS") ? 'bg-green-500 text-white' : ''}`}
+                    <li className={`px-4 py-0.5 mb-1 hover:bg-[#44a685] hover:cursor-pointer hover:text-white rounded-[0.25rem] ${isSelectedView(view, "LOGS") ? 'bg-[#4DBE98] text-white' : ''}`}
                         onClick={() => setView("LOGS")}>Logs
                     </li>
-                    <li className={`px-4 py-0.5 mb-1 ${isSelectedView(view, "TASK_EXECUTION") ? 'bg-green-500 text-white' : ''}`}
+                    <li className={`px-4 py-0.5 mb-1 hover:bg-[#44a685] hover:cursor-pointer hover:text-white rounded-[0.25rem] ${isSelectedView(view, "TASK_EXECUTION") ? 'bg-[#4DBE98] text-white' : ''}`}
                         onClick={() => setView("TASK_EXECUTION")}>Task Execution
                     </li>
-                    <li className={`px-4 py-0.5 mb-1 ${isSelectedView(view, "MEMORY_VIEW") ? 'bg-green-500 text-white' : ''}`}
+                    <li className={`px-4 py-0.5 mb-1 hover:bg-[#44a685] hover:cursor-pointer hover:text-white rounded-[0.25rem] ${isSelectedView(view, "MEMORY_VIEW") ? 'bg-[#4DBE98] text-white' : ''}`}
                         onClick={() => setView("MEMORY_VIEW")}>Memory View
                     </li>
-                    <li className={`px-4 py-0.5 mb-1 ${isSelectedView(view, "TASK_GRAPH") ? 'bg-green-500 text-white' : ''}`}
+                    <li className={`px-4 py-0.5 mb-1 hover:bg-[#44a685] hover:cursor-pointer hover:text-white rounded-[0.25rem] ${isSelectedView(view, "TASK_GRAPH") ? 'bg-[#4DBE98] text-white' : ''}`}
                         onClick={() => setView("TASK_GRAPH")}>Task Graph
                     </li>
                 </ul>

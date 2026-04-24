@@ -64,8 +64,8 @@ export default function FilterBar({logs, statusFilter, setStatusFilter, setTaskF
             }
             <InputFilter setMessageFilter={setMessageFilter} />
 
-            <div className={"ms-4 p-1 flex items-center bg-gray-300 rounded"}>
-                <div className={"rounded-md text-white p-1"}>{logs.length} Logs</div>
+            <div className={"ms-4 p-1 flex items-center bg-[#303540] rounded"}>
+                <div className={"rounded-md text-[#b0b3b7] p-1"}>{logs.length} Logs</div>
                 <div className={"ms-4 me-2 rounded-md text-white flex items-center bg-green-400 px-4 py-1"}>
                     {logs.filter(l => l.log_level === 'TASK_STATUS' && l.data.task_status === 'COMPLETE').length}
                 </div>

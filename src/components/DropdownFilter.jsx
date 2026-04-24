@@ -3,7 +3,7 @@ import {useState} from "react";
 
 const dropdownTheme = {
     floating: {
-        target: "bg-[#398FFE] enabled:hover:bg-blue-500 focus:ring-0 rounded-md me-2",
+        target: "bg-[#398FFE] enabled:hover:bg-blue-500 focus:ring-0 rounded-[0.25rem] me-2",
         content: 'bg-[#363A45]',
         item: {
             base: 'flex w-full item-center bg-[#363A45] text-[#b0b3b7] px-2 py-1 hover:bg-blue-500 hover:text-white',

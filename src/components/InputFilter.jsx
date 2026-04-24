@@ -8,7 +8,7 @@ export default function InputFilter({setMessageFilter}) {
     return (
         <form onSubmit={handleSubmit} className={"ms-4"}>
             <div>
-                <input onChange={(e) => setMessageFilter(e.target.value)} type="text" id="text-filter" name={"input_filter"} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Filter by text" required />
+                <input onChange={(e) => setMessageFilter(e.target.value)} type="text" id="text-filter" name={"input_filter"} className="bg-[#3A3E47] border border-[#3A3E47] text-[#b0b3b7] text-sm rounded-[0.25rem] focus:ring-[#3A3E47] focus:border-[#3A3E47] block w-full p-2.5" placeholder="Filter by text" required />
             </div>
         </form>
     )

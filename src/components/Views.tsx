@@ -110,7 +110,6 @@ export default function Views() {
 
             <div className={"overflow-y-auto bg-[#272B34] p-4"}>
                 <LogView logs={filterLogs(logs, statusFilter, taskFilter, messageFilter)} />
-                <TaskTimings mapping={mapping} totalExecutionTime={totalExecutionTime} />
             </div>
         </>
     )

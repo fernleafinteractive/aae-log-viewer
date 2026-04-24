@@ -11,8 +11,8 @@ export default function LogView({logs}) {
 
     return (
         <div className={"overflow-y-auto"}>
-            <div className={"border-b-2"}>
-                <div className={"grid grid-cols-7 p-2 font-bold"}>
+            <div className={"border-b-[2px] border-[#363A45]"}>
+                <div className={"grid grid-cols-7 text-white p-2"}>
                     <div className={"col-span-1"}>Timestamp</div>
                     <div className={"col-span-1"}>Log Level</div>
                     <div className={"col-span-1 text-center"}>Task Type</div>
