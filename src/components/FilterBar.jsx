@@ -54,7 +54,7 @@ export default function FilterBar({logs, statusFilter, setStatusFilter, setTaskF
     ];
 
     return (
-        <div className={"flex items-center my-4 py-4 border-b-2"}>
+        <div className={"flex items-center py-4 border-b-2"}>
             <DropdownFilter filterOptions={filterOptions} setStatusFilter={setStatusFilter} />
             {
                 statusFilter === "TASK_STATUS" ?

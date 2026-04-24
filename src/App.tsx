@@ -56,7 +56,7 @@ export default function App() {
     return (
         <div className={"px-24 h-[100%]"}>
 
-            <div className={"flex"}>
+            <div className={"flex gap-x-4"}>
                 <SidebarNavigation view={view} setView={setView}/>
                 <div className={"h-screen grow grid grid-rows-[auto_1fr]"}>
                     {getViewByType(view)}

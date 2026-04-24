@@ -108,7 +108,7 @@ export default function Views() {
         <>
             <FilterBar logs={logs} statusFilter={statusFilter} setStatusFilter={setStatusFilter} setTaskFilter={setTaskFilter} setMessageFilter={setMessageFilter} connected={connected} logView={logView} setLogView={setLogView} />
 
-            <div className={"overflow-y-auto"}>
+            <div className={"overflow-y-auto bg-[#272B34] p-4"}>
                 <LogView logs={filterLogs(logs, statusFilter, taskFilter, messageFilter)} />
                 <TaskTimings mapping={mapping} totalExecutionTime={totalExecutionTime} />
             </div>
