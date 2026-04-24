@@ -1,6 +1,6 @@
 export default function RowExtras({params, active}) {
     return (
-        <div className={active ? "block" : "hidden"}>
+        <div className={active ? "block bg-[#363A45] rounded-[0.25rem] m-2 p-1" : "hidden"}>
             {Object.keys(params).map((p, index) => (
                 <div key={index} className={`ms-4 ${typeof params[p] === 'object' ? '' : 'flex'}`}>
                     <div className={"font-bold me-2"}>{p}:</div>

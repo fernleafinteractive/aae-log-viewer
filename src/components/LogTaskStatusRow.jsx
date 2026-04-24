@@ -15,7 +15,7 @@ export default function LogTaskStatusRow({info}) {
     }
 
     return (
-        <div className={"border-b-[1px] border-[#363A45]"}>
+        <div className={`border-b-[1px] border-[#363A45] rounded-[0.25rem] ${showExtra ? 'border-[1px] border-[#4DBE98]' : ''}`}>
             <div className={"grid grid-cols-7 p-2"}>
                 <div className={"col-span-1"}>{getLogTime(info.data.timestamp)}</div>
                 <div className={"col-span-1"}><LogLevel logLevel={info.data.task_status} /></div>
