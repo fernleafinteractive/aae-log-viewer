@@ -23,8 +23,8 @@ export default function TaskTimings({mapping, totalExecutionTime}) {
     }
 
     return (
-        <div className={"overflow-y-auto"}>
-            <h1 className={"text-xl mb-4 bg-gray-300 p-2 rounded"}>Total execution time: <span className={"font-bold"}>{formatDuration(totalExecutionTime)}</span></h1>
+        <div className={"overflow-y-auto p-4 bg-[#272B34] rounded-[0.25rem]"}>
+            <h1 className={"text-xl mb-4 bg-[#3A3E47] p-2 rounded"}>Total execution time: <span className={"font-bold text-white"}>{formatDuration(totalExecutionTime)}</span></h1>
 
             <div className={"flex items-center rounded"}>
 
@@ -57,7 +57,7 @@ function Timing({taskId, tasks}) {
                     {didTaskFail(tasks) ? <span title={"task failed"} className={"text-red-500 ms-4"}><ErrorIcon /></span>
                         : ''}
                 </div>
-                <div className={"ms-auto me-4"}>{isTaskRunning(tasks) ?
+                <div className={"ms-auto me-4 text-white"}>{isTaskRunning(tasks) ?
                     <LoadingIcon/> : formatDuration(getTaskExecutionTime(tasks))}</div>
                 <button className={"ms-4"} onClick={() => {
                     setShowTimings(!showTimings)

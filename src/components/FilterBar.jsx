@@ -54,7 +54,7 @@ export default function FilterBar({logs, statusFilter, setStatusFilter, setTaskF
     ];
 
     return (
-        <div className={"flex items-center p-4 bg-[#272B34] mb-4"}>
+        <div className={"flex items-center p-4 bg-[#272B34] mb-4 rounded-[0.25rem]"}>
             <DropdownFilter filterOptions={filterOptions} setStatusFilter={setStatusFilter} />
             {
                 statusFilter === "TASK_STATUS" ?

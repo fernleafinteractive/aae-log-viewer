@@ -5,6 +5,8 @@ import UploadIcon from "./icons/UploadIcon.jsx";
 import {didTaskFail, isTaskRunning, getTaskExecutionTime} from "../utils/task_utils.js";
 import {LogDataMappingContext, useLogDataMapping} from "../context/LogDataMappingContext";
 import {useTaskGraph} from "../context/TaskGraphContext";
+import UploadField from "./UploadField";
+import InputField from "./InputField";
 
 cytoscape.use(dagre);
 
@@ -168,21 +170,21 @@ export default function TaskGraph(props) {
     }, [inputField]);
 
     return (
-        <div>
+        <div className={"p-4 bg-[#272B34] rounded-[0.25rem]"}>
             <div className={"flex items-center my-4 py-4"}>
-                <input type={"text"} className={"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"} value={inputField} onChange={(e) => setInputField(e.target.value)} placeholder={"Search by task ID"}
-                />
-                <label
-                    className="ms-auto text-white font-semibold px-3 py-2 rounded-md bg-gray-500 hover:bg-gray-600 hover:cursor-pointer ring-1 ring-gray-500 focus-within:ring-2 focus-within:ring-indigo-500"
-                    aria-label={"Upload log file"}>
-                    <UploadIcon/>
-                    <input type="file" className="focus:outline-none hidden" onChange={fileSelect} multiple={true}/>
-                </label>
+
+                <div>
+                    <InputField changeCallback={setInputField} value={inputField} placeholder={"Search by task ID"} />
+                </div>
+
+                <div className={"ms-auto"}>
+                    <UploadField label={"Upload Task Graph"} fileSelect={fileSelect} />
+                </div>
             </div>
 
             <div style={{position: 'relative'}}>
                 <div ref={cyContainerRef}
-                     style={{width: '100%', height: "85vh", border: "2px solid #e5e7eb", borderRadius: "0.5rem"}}></div>
+                     style={{width: '100%', height: "85vh", border: "2px solid #3A3E47", borderRadius: "0.25rem", backgroundColor: "#3A3E47"}}></div>
                 <div style={{
                     display: selectedNode !== null ? 'block' : 'none',
                     position: 'absolute',

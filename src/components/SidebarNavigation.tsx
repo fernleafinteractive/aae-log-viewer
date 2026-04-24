@@ -42,10 +42,10 @@ export default function SidebarNavigation({view, setView}) {
     }, []);
 
     return (
-        <div className={"sidebar-navigation h-screen p-4 bg-[#272B34]"}>
+        <div className={"sidebar-navigation h-screen p-4 bg-[#272B34] rounded-[0.25rem]"}>
             <div>
 
-                <UploadField fileSelect={fileSelect} />
+                <UploadField fileSelect={fileSelect} label={"Upload Logs"} />
 
                 <ul className={"whitespace-nowrap text-left border-t-[2px] border-[#363A45] mt-3 pt-3"}>
                     <li className={`px-4 py-0.5 mb-1 hover:bg-[#44a685] hover:cursor-pointer hover:text-white rounded-[0.25rem] ${isSelectedView(view, "LOGS") ? 'bg-[#4DBE98] text-white' : ''}`}
