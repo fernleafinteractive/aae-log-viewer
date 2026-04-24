@@ -38,7 +38,6 @@ html, body, #root {
 }
 
 .log-row .log-message {
-    /*text-align: right;*/
     flex-grow: 2;
 }
 
@@ -48,7 +47,6 @@ html, body, #root {
     font-size: 0.8rem !important;
 }
 
-.selected-nav {
-    /*background-color: #2bb380;
-    padding: 0.25rem 2rem;*/
+div[data-testid="flowbite-dropdown"] {
+    border-color: #272B34;
 }
