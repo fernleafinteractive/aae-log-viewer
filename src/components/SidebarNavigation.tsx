@@ -44,17 +44,24 @@ export default function SidebarNavigation({view, setView}) {
     return (
         <div className={"sidebar-navigation h-screen p-4"}>
             <div>
-                <div className={"flex items-center justify-evenly p-2 font-bold text-white rounded-[0.25rem] bg-[#33B47E]"}>
-                    <UploadIcon className={"size-6 font-bold"} />
-                    <label htmlFor="file-input" className="cursor-pointer">Upload</label>
-                    <input type="file" className="focus:outline-none hidden" onChange={fileSelect} multiple={true} />
-                </div>
+                <label className="flex items-center justify-evenly p-2 font-bold text-white rounded-[0.25rem] bg-[#33B47E] cursor-pointer">
+                    <UploadIcon className={"size-6 font-bold"}/>
+                    Upload <input type="file" className="focus:outline-none hidden" onChange={fileSelect} multiple={true}/>
+                </label>
 
                 <ul className={"whitespace-nowrap text-left border-t-[1px] border-green-600 mt-3 pt-3"}>
-                    <li className={`px-4 py-0.5 mb-1 ${isSelectedView(view, "LOGS") ? 'bg-green-500' : ''}`} onClick={()=>setView("LOGS")}>Logs</li>
-                    <li className={`px-4 py-0.5 mb-1 ${isSelectedView(view, "TASK_EXECUTION") ? 'bg-green-500' : ''}`} onClick={()=>setView("TASK_EXECUTION")}>Task Execution</li>
-                    <li className={`px-4 py-0.5 mb-1 ${isSelectedView(view, "MEMORY_VIEW") ? 'bg-green-500' : ''}`} onClick={()=>setView("MEMORY_VIEW")}>Memory View</li>
-                    <li className={`px-4 py-0.5 mb-1 ${isSelectedView(view, "TASK_GRAPH") ? 'bg-green-500' : ''}`} onClick={()=>setView("TASK_GRAPH")}>Task Graph</li>
+                    <li className={`px-4 py-0.5 mb-1 ${isSelectedView(view, "LOGS") ? 'bg-green-500' : ''}`}
+                        onClick={() => setView("LOGS")}>Logs
+                    </li>
+                    <li className={`px-4 py-0.5 mb-1 ${isSelectedView(view, "TASK_EXECUTION") ? 'bg-green-500' : ''}`}
+                        onClick={() => setView("TASK_EXECUTION")}>Task Execution
+                    </li>
+                    <li className={`px-4 py-0.5 mb-1 ${isSelectedView(view, "MEMORY_VIEW") ? 'bg-green-500' : ''}`}
+                        onClick={() => setView("MEMORY_VIEW")}>Memory View
+                    </li>
+                    <li className={`px-4 py-0.5 mb-1 ${isSelectedView(view, "TASK_GRAPH") ? 'bg-green-500' : ''}`}
+                        onClick={() => setView("TASK_GRAPH")}>Task Graph
+                    </li>
                 </ul>
             </div>
         </div>
