@@ -48,11 +48,12 @@ export default function TaskTimings({mapping, totalExecutionTime}) {
 function Timing({taskId, tasks}) {
     const [showTimings, setShowTimings] = useState(false);
 
+    const borderColor = stringToColor(taskId);
     return (
-        <div className={"mb-4"}>
+        <div className={`mb-4 ${showTimings ? `rounded-[0.25rem] p-2 bg-[#363A45]` : ''}`}>
             <div className={"flex items-center"}>
-                <div className={`p-2 rounded me-4`} style={{backgroundColor: stringToColor(taskId)}}></div>
-                <div className={"me-4 flex items-center"}>
+                <div className={`p-2 rounded me-4`} style={{backgroundColor: borderColor}}></div>
+                <div className={`me-4 flex items-center ${showTimings ? `text-white` : ''}`}>
                     {taskId}
                     {didTaskFail(tasks) ? <span title={"task failed"} className={"text-red-500 ms-4"}><ErrorIcon /></span>
                         : ''}
@@ -66,7 +67,7 @@ function Timing({taskId, tasks}) {
                 </button>
 
             </div>
-            <div className={!showTimings ? 'hidden border-0' : 'border-s-2 ms-1.5 ps-2'} style={{borderColor:  stringToColor(taskId)}}>
+            <div className={!showTimings ? 'hidden border-0' : 'border-s-2 ms-1.5 ps-2'} style={{borderColor:  borderColor, maxHeight: '15rem', overflowY: 'auto'}}>
                 {tasks.map((v, index) => (
                     <LogTaskStatusRow info={v} key={index}/>
                 ))}
