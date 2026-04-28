@@ -170,8 +170,8 @@ export default function TaskGraph(props) {
     }, [inputField]);
 
     return (
-        <div className={"p-4 bg-[#272B34] rounded-[0.25rem]"}>
-            <div className={"flex items-center my-4 py-4"}>
+        <div className={"flex flex-col grow p-4 bg-[#272B34] rounded-[0.25rem]"}>
+            <div className={"flex items-center pb-4"}>
 
                 <div>
                     <InputField changeCallback={setInputField} value={inputField} placeholder={"Search by task ID"} />
@@ -182,18 +182,19 @@ export default function TaskGraph(props) {
                 </div>
             </div>
 
-            <div style={{position: 'relative'}}>
+            <div className={"flex grow"} style={{position: 'relative'}}>
                 <div ref={cyContainerRef}
-                     style={{width: '100%', height: "85vh", border: "2px solid #3A3E47", borderRadius: "0.25rem", backgroundColor: "#3A3E47"}}></div>
+                     style={{display: 'flex', flexGrow: '1', border: "2px solid #3A3E47", borderRadius: "0.25rem", backgroundColor: "#3A3E47"}}></div>
+
                 <div style={{
                     display: selectedNode !== null ? 'block' : 'none',
                     position: 'absolute',
                     bottom: 0,
                     left: 0,
-                    backgroundColor: '#e5e7eb',
+                    backgroundColor: '#272B34',
                     margin: "1rem",
                     padding: "1rem",
-                    borderRadius: "0.5rem"
+                    borderRadius: "0.25rem"
                 }}>
                     {
                         selectedNode !== null ?

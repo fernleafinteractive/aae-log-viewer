@@ -28,37 +28,12 @@ export default function App() {
 
     const [mappingWorker, setMappingWorker] = useState(null);
 
-
-    useEffect(() => {
-        /*const myMappingWorker = new Worker(new URL("./../workers/timings_worker.js", import.meta.url));*/
-
-        /*myMappingWorker.onmessage = (event) => {
-            const data = {
-                mapping: event.data.mapping,
-                totalExecutionTime: event.data.totalExecutionTime
-            }
-
-            setMapping({
-                mapping: data.mapping,
-                totalExecutionTime: data.totalExecutionTime
-            });
-        }*/
-
-        /*setMappingWorker(myMappingWorker);
-
-        return () => {
-            myMappingWorker.terminate();
-        }*/
-
-
-    }, []);
-
     return (
         <div className={"px-24 h-[100%]"}>
 
             <div className={"flex gap-x-4"}>
                 <SidebarNavigation view={view} setView={setView}/>
-                <div className={"h-screen grow grid grid-rows-[auto_1fr]"}>
+                <div className={"h-screen grow flex flex-col"}>
                     {getViewByType(view)}
                 </div>
             </div>
