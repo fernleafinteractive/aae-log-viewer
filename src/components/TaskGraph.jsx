@@ -7,6 +7,7 @@ import {LogDataMappingContext, useLogDataMapping} from "../context/LogDataMappin
 import {useTaskGraph} from "../context/TaskGraphContext";
 import UploadField from "./UploadField";
 import InputField from "./InputField";
+import CopyIcon from "./icons/CopyIcon.jsx";
 
 cytoscape.use(dagre);
 
@@ -125,6 +126,7 @@ export default function TaskGraph(props) {
             }
 
             setSelectedNode(node._private.data);
+            console.log(node._private.data)
             selectedNodeRef.current = {
                 data: node._private.data,
                 backgroundColor: node.style('background-color')
@@ -194,24 +196,34 @@ export default function TaskGraph(props) {
                     backgroundColor: '#272B34',
                     margin: "1rem",
                     padding: "1rem",
-                    borderRadius: "0.25rem"
+                    borderRadius: "0.25rem",
+                    maxHeight: "15rem",
+                    overflowY: "auto"
                 }}>
                     {
                         selectedNode !== null ?
                             <div>
-                                {Object.keys(selectedNode).map((k, index) => (
+
+                                <div className={"pb-2 mb-2 border-b-[2px] border-[#363A45]"}>
+                                    <div className={"flex items-center"}>Task ID: <span className={"text-white ms-2"}>{selectedNode.id}</span> <CopyIcon onClick={() => navigator.clipboard.writeText(selectedNode.id)} className={"size-5 ms-5 hover:cursor-pointer"} style={{fill: "#b0b3b7"}} title={"Copy Task ID to clipboard"} /></div>
+                                </div>
+
+                                {Object.keys(selectedNode).filter(k => k !== "id").map((k, index) => (
                                     <div key={index}>
-                                        {
-                                            typeof selectedNode[k] === 'object' ?
-                                                Object.keys(selectedNode[k]).map((obj, idx) => (
-                                                    <div key={idx} className={"ms-2 flex items-center"}>
-                                                        <div className={"font-bold me-2"}>{obj}:</div>
-                                                        <div>{JSON.stringify(selectedNode[k][obj])}</div>
-                                                    </div>
-                                                ))
-                                                :
-                                                <div className={""}>{selectedNode[k]}</div>
-                                        }
+                                        <div className={"pb-2"}>
+                                            <div className={"text-white"}>{k}</div>
+                                            {
+                                                typeof selectedNode[k] === 'object' ?
+                                                    Object.keys(selectedNode[k]).map((obj, idx) => (
+                                                        <div key={idx} className={"ps-2 flex items-center"}>
+                                                            <div className={"me-2"}>{obj}:</div>
+                                                            <div>{JSON.stringify(selectedNode[k][obj])}</div>
+                                                        </div>
+                                                    ))
+                                                    :
+                                                    <div className={"ps-2"}>{selectedNode[k]}</div>
+                                            }
+                                        </div>
                                     </div>
                                 ))
                                 }

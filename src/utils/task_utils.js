@@ -6,14 +6,18 @@ export function getTaskExecutionTime(data) {
     return max - min;
 }
 
-export function didTaskFail(data) {
+export function isTaskStatus(data, status) {
     for(const task of data) {
-        if (task.data.task_status === 'FAILED') {
+        if (task.data.task_status === status) {
             return true;
         }
     }
 
     return false;
+}
+
+export function didTaskFail(data) {
+    return isTaskStatus(data, "FAILED");
 }
 
 export function isTaskRunning(data) {
