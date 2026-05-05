@@ -212,16 +212,19 @@ export default function TaskGraph(props) {
                 }}>
                     {
                         selectedNode !== null ?
-                            <div>
+                            <div className={"max-w-2xl"}>
 
                                 <div className={"pb-2 mb-2 border-b-[2px] border-[#363A45]"}>
+                                    <div className={"flex mb-2"}>
+                                        <button className={"ms-auto p-[0.25rem] text-[0.85rem] text-white rounded-[0.25rem] bg-[#f57571] cursor-pointer"} onClick={() => {setSelectedNode(null)}}>Close</button>
+                                    </div>
                                     <div className={"flex items-center"}>Task ID: <span className={"text-white ms-2"}>{selectedNode.id}</span> <CopyIcon onClick={() => navigator.clipboard.writeText(selectedNode.id)} className={"size-5 ms-5 hover:cursor-pointer"} style={{fill: "#b0b3b7"}} title={"Copy Task ID to clipboard"} /></div>
                                 </div>
 
                                 {Object.keys(selectedNode).filter(k => k !== "id").map((k, index) => (
                                     <div key={index}>
                                         <div className={"pb-2"}>
-                                            <div className={"text-white"}>{k}</div>
+                                            <div className={"text-white"}>{k}:</div>
                                             {
                                                 typeof selectedNode[k] === 'object' ?
                                                     Object.keys(selectedNode[k]).map((obj, idx) => (
