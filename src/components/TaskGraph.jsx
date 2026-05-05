@@ -1,7 +1,6 @@
 import {useRef, useEffect, useState, useCallback, useContext} from "react";
 import cytoscape from "cytoscape";
 import dagre from "cytoscape-dagre";
-import UploadIcon from "./icons/UploadIcon.jsx";
 import {didTaskFail, isTaskRunning, getTaskExecutionTime} from "../utils/task_utils.js";
 import {LogDataMappingContext, useLogDataMapping} from "../context/LogDataMappingContext";
 import {useTaskGraph} from "../context/TaskGraphContext";
@@ -66,10 +65,10 @@ export default function TaskGraph(props) {
                     style: {
                         'label': 'data(id)',
                         'background-color': '#ef7d2c',
-                        'color': '#000000',
+                        'color': '#b0b3b7',
                         'width': '100px',
                         'shape': 'round-rectangle',
-                        'border-width': '4px',
+                        'border-width': '2px',
                         'border-color': function(element) {
                             return element.outgoers().edges().length === 0 ? '#7a06b0' : 'rgba(119,119,119,0)';
                         }
@@ -79,9 +78,10 @@ export default function TaskGraph(props) {
                     selector: 'edge',
                     style: {
                         'width': 3,
-                        'line-color': '#939393',
-                        'target-arrow-color': '#939393',
-                        // 'target-arrow-shape': 'triangle',
+                        'line-color': '#5e6062',
+                        'target-arrow-shape': 'none',
+                        'source-arrow-color': '#5e6062',
+                        'source-arrow-shape': 'triangle',
                         'curve-style': 'bezier'
                     }
                 }
@@ -171,12 +171,22 @@ export default function TaskGraph(props) {
 
     }, [inputField]);
 
+    const handleFitGraph = (e) => {
+        if(cyRef.current === null) return;
+
+        cyRef.current.fit();
+    }
+
     return (
         <div className={"flex flex-col grow p-4 bg-[#272B34] rounded-[0.25rem]"}>
             <div className={"flex items-center pb-4"}>
 
                 <div>
                     <InputField changeCallback={setInputField} value={inputField} placeholder={"Search by task ID"} />
+                </div>
+
+                <div>
+                    <button className={"p-2 text-white rounded-[0.25rem] bg-[#ac39fe] cursor-pointer ms-2"} onClick={handleFitGraph}>Fit Graph</button>
                 </div>
 
                 <div className={"ms-auto"}>
