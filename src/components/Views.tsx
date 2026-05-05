@@ -1,23 +1,19 @@
-import {useCallback, useContext, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 
 import {useLogData} from "../context/LogDataContext";
 import {useLogDataMapping} from "../context/LogDataMappingContext";
 
 import FilterBar from "./FilterBar.jsx";
 import LogView from "./LogView.jsx";
-import TaskTimings from "./TaskTimings.jsx";
 import {socket} from "../socket.js";
 
 export default function Views() {
 
     const {logs, setLogs} = useLogData();
-    // const {worker} = useFileInputWorker();
 
     const {mapping, totalExecutionTime, setMapping} = useLogDataMapping();
 
     const [connected, setConnected] = useState(false);
-
-    const [mappingWorker, setMappingWorker] = useState(null);
 
     const [logView, setLogView] = useState(true);
 
@@ -48,23 +44,6 @@ export default function Views() {
 
     useEffect(() => {
 
-        const myMappingWorker = new Worker(new URL("./../workers/timings_worker.js", import.meta.url));
-
-
-        myMappingWorker.onmessage = (event) => {
-            const data = {
-                mapping: event.data.mapping,
-                totalExecutionTime: event.data.totalExecutionTime
-            }
-
-            setMapping({
-                mapping: data.mapping,
-                totalExecutionTime: data.totalExecutionTime
-            });
-        }
-
-        setMappingWorker(myMappingWorker);
-
         function onConnect() {
             console.log("connected");
             setConnected(true);
@@ -92,17 +71,8 @@ export default function Views() {
             socket.off('connect', onConnect);
             socket.off('disconnect', onDisconnect);
             socket.off('data', onData);
-
-            myMappingWorker.terminate();
         }
     }, []);
-
-    useEffect(() => {
-        if(mappingWorker === null || logs.length === 0) return;
-
-        mappingWorker.postMessage(logs);
-
-    }, [logs, mappingWorker]);
 
     return (
         <>

@@ -3,6 +3,7 @@ import {useState, useRef, useEffect, useCallback} from "react";
 import {useLogData} from "../context/LogDataContext";
 import {ViewType} from "../types/view_types";
 import UploadField from "./UploadField";
+import {useLogDataMapping} from "../context/LogDataMappingContext";
 
 function isSelectedView(view : ViewType, currentView : ViewType) {
     return view === currentView;
@@ -10,8 +11,11 @@ function isSelectedView(view : ViewType, currentView : ViewType) {
 
 export default function SidebarNavigation({view, setView}) {
 
-    const {setLogs} = useLogData();
+    const {logs, setLogs} = useLogData();
+    const {mapping, totalExecutionTime, setMapping} = useLogDataMapping();
+
     const inputWorkerRef = useRef<Worker>();
+    const mappingWorkerRef = useRef<Worker>();
 
     const fileSelect = useCallback(async (e) => {
         if(inputWorkerRef.current === null) {
@@ -27,12 +31,26 @@ export default function SidebarNavigation({view, setView}) {
 
     useEffect(() => {
         const worker = new Worker(new URL("../workers/input_worker.js", import.meta.url));
+        const mappingWorker = new Worker(new URL("./../workers/timings_worker.js", import.meta.url));
+
+        mappingWorker.onmessage = (event) => {
+            const data = {
+                mapping: event.data.mapping,
+                totalExecutionTime: event.data.totalExecutionTime
+            }
+
+            setMapping({
+                mapping: data.mapping,
+                totalExecutionTime: data.totalExecutionTime
+            });
+        }
 
         worker.onmessage = (event) => {
             setLogs(event.data);
         }
 
         inputWorkerRef.current = worker;
+        mappingWorkerRef.current = mappingWorker;
 
         return () => {
             worker.terminate();
@@ -40,6 +58,12 @@ export default function SidebarNavigation({view, setView}) {
         }
 
     }, []);
+
+    useEffect(() => {
+        if(logs.length === 0) return;
+
+        mappingWorkerRef.current.postMessage(logs);
+    }, [logs]);
 
     return (
         <div className={"sidebar-navigation h-screen p-4 bg-[#272B34] rounded-[0.25rem]"}>
