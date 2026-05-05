@@ -13,7 +13,6 @@ export const LogDataContextProvider = ({children}) => {
     const [state, setState] = useState<LogDataType[]>([]);
 
     const setLogs = (logs: LogDataType[]) => {
-        console.log("set logs", logs);
         setState([...state, ...logs]);
     }
 
