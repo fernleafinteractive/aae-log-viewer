@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 
 import {useLogData} from "../context/LogDataContext";
 import {useLogDataMapping} from "../context/LogDataMappingContext";
+import {useSelectedTaskID} from "../context/SelectedTaskIDContext";
 
 import FilterBar from "./FilterBar.jsx";
 import LogView from "./LogView.jsx";
@@ -12,6 +13,7 @@ export default function Views() {
     const {logs, setLogs} = useLogData();
 
     const {mapping, totalExecutionTime, setMapping} = useLogDataMapping();
+    const {taskID, setTaskID} = useSelectedTaskID();
 
     const [connected, setConnected] = useState(false);
 

@@ -9,7 +9,7 @@ export function formatDuration(timestamp) {
     if(hours > 0) return `${pad(hours)}:${pad(minutes)}:${pad(seconds)} ${hours > 1 ? 'hours' : 'hour'}`;
     if(minutes > 0) return `${pad(minutes)}:${pad(seconds)} ${minutes > 1 ? 'minutes' : 'minute'}`;
 
-    return `${pad(seconds)} ${seconds > 1 ? 'seconds' : 'second'}`;
+    return `${seconds} ${seconds > 1 ? 'seconds' : 'second'}`;
 }
 
 export function getLogTime(time) {

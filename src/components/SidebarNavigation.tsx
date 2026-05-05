@@ -55,6 +55,9 @@ export default function SidebarNavigation({view, setView}) {
         return () => {
             worker.terminate();
             inputWorkerRef.current = null;
+
+            mappingWorker.terminate();
+            mappingWorkerRef.current = null;
         }
 
     }, []);

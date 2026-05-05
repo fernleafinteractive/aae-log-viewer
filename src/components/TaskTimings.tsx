@@ -39,7 +39,7 @@ export default function TaskTimings({mapping, totalExecutionTime} : {mapping : M
             </div>
 
             {mapKeys.map((key, index) => (
-                <div key={index}>
+                <div className={"mb-2"} key={index}>
                     <Timing taskId={key} tasks={mapping.get(key)} />
                 </div>
             ))}
@@ -49,12 +49,12 @@ export default function TaskTimings({mapping, totalExecutionTime} : {mapping : M
 
 }
 
-function Timing({taskId, tasks}) {
+export function Timing({taskId, tasks}) {
     const [showTimings, setShowTimings] = useState(false);
 
     const borderColor = stringToColor(taskId);
     return (
-        <div className={`mb-4 ${showTimings ? `rounded-[0.25rem] p-2 bg-[#363A45]` : ''}`}>
+        <div className={`${showTimings ? `rounded-[0.25rem] p-2 bg-[#363A45]` : ''}`}>
             <div className={"flex items-center"}>
                 <div className={`p-2 rounded me-4`} style={{backgroundColor: borderColor}}></div>
                 <div className={`me-4 flex items-center ${showTimings ? `text-white` : ''}`}>

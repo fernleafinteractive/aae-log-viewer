@@ -2,11 +2,14 @@ import {useRef, useEffect, useState, useCallback, useContext} from "react";
 import cytoscape from "cytoscape";
 import dagre from "cytoscape-dagre";
 import {didTaskFail, isTaskRunning, getTaskExecutionTime} from "../utils/task_utils.js";
-import {LogDataMappingContext, useLogDataMapping} from "../context/LogDataMappingContext";
+import {useLogDataMapping} from "../context/LogDataMappingContext";
+import {useSelectedTaskID} from "../context/SelectedTaskIDContext";
 import {useTaskGraph} from "../context/TaskGraphContext";
 import UploadField from "./UploadField";
 import InputField from "./InputField";
+import {Timing} from "./TaskTimings";
 import CopyIcon from "./icons/CopyIcon.jsx";
+
 
 cytoscape.use(dagre);
 
@@ -14,6 +17,7 @@ export default function TaskGraph(props) {
 
     const {mapping, totalExecutionTime, setMapping} = useLogDataMapping();
     const {data, setTaskGraph} = useTaskGraph();
+    const {taskID: selectedTaskID, setTaskID: setSelectedTaskID} = useSelectedTaskID();
 
     const [worker, setWorker] = useState(null);
     const [selectedNode, setSelectedNode] = useState(null);
@@ -113,6 +117,7 @@ export default function TaskGraph(props) {
                     node.style('background-color', selectedNodeRef.current.backgroundColor);
                     selectedNodeRef.current = null;
                     setSelectedNode(null);
+                    setSelectedNode("");
                     return;
                 }
 
@@ -126,7 +131,7 @@ export default function TaskGraph(props) {
             }
 
             setSelectedNode(node._private.data);
-            console.log(mapping, mapping[node._private.data.id]);
+            setSelectedTaskID(node._private.data.id);
             selectedNodeRef.current = {
                 data: node._private.data,
                 backgroundColor: node.style('background-color')
@@ -134,19 +139,23 @@ export default function TaskGraph(props) {
             node.style('background-color', '#d6c529');
         });
 
-        if(mapping.length > 0) {
-            for(const task of mapping) {
+        if(mapping.size > 0) {
+
+            const mappingKeys = [...mapping.keys()];
+
+            for(const key of mappingKeys) {
+                const task = mapping.get(key);
 
                 const node = cy.nodes().find((el) => {
-                    return el.data('id') === task.key;
+                    return el.data('id') === key;
                 });
 
                 if(!node) continue;
 
-                if(isTaskRunning(task.value)) {
+                if(isTaskRunning(task)) {
                     node.style('background-color', '#3180c0');
                 } else {
-                    if(didTaskFail(task.value)) {
+                    if(didTaskFail(task)) {
                         node.style('background-color', '#c03136');
                     } else {
                         node.style('background-color', '#2ebd60');
@@ -219,7 +228,10 @@ export default function TaskGraph(props) {
                                         <button className={"p-[0.25rem] text-[0.85rem] text-white rounded-[0.25rem] bg-[#7cb8d9] cursor-pointer"} onClick={() => {
                                             navigator.clipboard.writeText(JSON.stringify(selectedNode));
                                         }}>Copy JSON</button>
-                                        <button className={"ms-auto p-[0.25rem] text-[0.85rem] text-white rounded-[0.25rem] bg-[#db7f7f] cursor-pointer"} onClick={() => {setSelectedNode(null)}}>Close</button>
+                                        <button className={"ms-auto p-[0.25rem] text-[0.85rem] text-white rounded-[0.25rem] bg-[#db7f7f] cursor-pointer"} onClick={() => {
+                                            setSelectedNode(null);
+                                            setSelectedTaskID("");
+                                        }}>Close</button>
                                     </div>
                                     <div className={"flex items-center"}>Task ID: <span className={"text-white ms-2"}>{selectedNode.id}</span> <CopyIcon onClick={() => navigator.clipboard.writeText(selectedNode.id)} className={"size-5 ms-5 hover:cursor-pointer"} style={{fill: "#b0b3b7"}} title={"Copy Task ID to clipboard"} /></div>
                                 </div>

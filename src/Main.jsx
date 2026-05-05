@@ -6,9 +6,11 @@ import './styles.css'
 import {LogDataContextProvider} from "./context/LogDataContext";
 import {LogDataMappingContextProvider} from "./context/LogDataMappingContext";
 import {TaskGraphContextProvider} from "./context/TaskGraphContext";
+import {SelectedTaskIDContextProvider} from "./context/SelectedTaskIDContext";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+      <SelectedTaskIDContextProvider>
           <LogDataContextProvider>
               <LogDataMappingContextProvider>
                   <TaskGraphContextProvider>
@@ -16,5 +18,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                   </TaskGraphContextProvider>
               </LogDataMappingContextProvider>
           </LogDataContextProvider>
+      </SelectedTaskIDContextProvider>
   </React.StrictMode>,
 )
