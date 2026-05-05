@@ -35,11 +35,11 @@ onmessage = function(e) {
         return getTaskExecutionTime(b[1]) - getTaskExecutionTime(a[1]);
     }))
 
-    const mapping = Array.from(sortedByExecutionMapping, ([key, value]) => ({key, value}));
+    // const mapping = Array.from(sortedByExecutionMapping, ([key, value]) => ({key, value}));
     const totalExecutionTime = maxTimestamp - minTimestamp;
 
     postMessage({
-        mapping,
+        mapping: sortedByExecutionMapping,
         totalExecutionTime
     });
 

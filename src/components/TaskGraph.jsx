@@ -126,7 +126,7 @@ export default function TaskGraph(props) {
             }
 
             setSelectedNode(node._private.data);
-            console.log(node._private.data)
+            console.log(mapping, mapping[node._private.data.id]);
             selectedNodeRef.current = {
                 data: node._private.data,
                 backgroundColor: node.style('background-color')
@@ -216,7 +216,10 @@ export default function TaskGraph(props) {
 
                                 <div className={"pb-2 mb-2 border-b-[2px] border-[#363A45]"}>
                                     <div className={"flex mb-2"}>
-                                        <button className={"ms-auto p-[0.25rem] text-[0.85rem] text-white rounded-[0.25rem] bg-[#f57571] cursor-pointer"} onClick={() => {setSelectedNode(null)}}>Close</button>
+                                        <button className={"p-[0.25rem] text-[0.85rem] text-white rounded-[0.25rem] bg-[#7cb8d9] cursor-pointer"} onClick={() => {
+                                            navigator.clipboard.writeText(JSON.stringify(selectedNode));
+                                        }}>Copy JSON</button>
+                                        <button className={"ms-auto p-[0.25rem] text-[0.85rem] text-white rounded-[0.25rem] bg-[#db7f7f] cursor-pointer"} onClick={() => {setSelectedNode(null)}}>Close</button>
                                     </div>
                                     <div className={"flex items-center"}>Task ID: <span className={"text-white ms-2"}>{selectedNode.id}</span> <CopyIcon onClick={() => navigator.clipboard.writeText(selectedNode.id)} className={"size-5 ms-5 hover:cursor-pointer"} style={{fill: "#b0b3b7"}} title={"Copy Task ID to clipboard"} /></div>
                                 </div>

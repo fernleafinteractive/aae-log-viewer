@@ -12,9 +12,11 @@ import LogTaskStatusRow from "./LogTaskStatusRow.jsx";
 import {formatDuration, stringToColor} from "../utils/log_utils.js";
 import {didTaskFail, isTaskRunning, getTaskExecutionTime} from "../utils/task_utils.js";
 
-export default function TaskTimings({mapping, totalExecutionTime}) {
+export default function TaskTimings({mapping, totalExecutionTime} : {mapping : Map<String, []>}) {
 
-    if(mapping.length === 0) {
+    console.log(mapping);
+
+    if(mapping.size === 0) {
         return (
         <div className={"flex flex-1 items-center justify-center"}>
             No data
@@ -22,21 +24,23 @@ export default function TaskTimings({mapping, totalExecutionTime}) {
         )
     }
 
+    const mapKeys = [...mapping.keys()];
+
     return (
         <div className={"overflow-y-auto p-4 bg-[#272B34] rounded-[0.25rem]"}>
             <h1 className={"text-xl mb-4 bg-[#3A3E47] p-2 rounded"}>Total execution time: <span className={"font-bold text-white"}>{formatDuration(totalExecutionTime)}</span></h1>
 
             <div className={"flex items-center rounded"}>
 
-                {mapping.map((task, index) => (
-                    <div title={task.key} key={index} className={`first:rounded-s last:rounded-e mb-4 p-3`} style={{width: `${(getTaskExecutionTime(task.value)/totalExecutionTime)*100}%`, backgroundColor: `${stringToColor(task.key)}`}}></div>
+                {mapKeys.map((key, index) => (
+                    <div title={key} key={index} className={`first:rounded-s last:rounded-e mb-4 p-3`} style={{width: `${(getTaskExecutionTime(mapping.get(key))/totalExecutionTime)*100}%`, backgroundColor: `${stringToColor(key)}`}}></div>
                 ))}
 
             </div>
 
-            {mapping.map((task, index) => (
+            {mapKeys.map((key, index) => (
                 <div key={index}>
-                    <Timing taskId={task.key} tasks={task.value} />
+                    <Timing taskId={key} tasks={mapping.get(key)} />
                 </div>
             ))}
 
