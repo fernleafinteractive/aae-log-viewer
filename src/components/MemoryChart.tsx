@@ -60,13 +60,6 @@ export default function MemoryChart() {
                     strokeWidth: 0
                 }
             },
-            xaxis: {
-                labels: {
-                    style: {
-                        colors: "#afb2b6"
-                    }
-                }
-            },
             yaxis: {
                 labels: {
                     style: {
