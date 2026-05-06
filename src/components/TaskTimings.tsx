@@ -1,7 +1,4 @@
 import {useContext, useEffect, useState} from "react";
-import Chart from "react-apexcharts";
-
-import {LogDataContext, useLogData} from "../context/LogDataContext";
 
 import ErrorIcon from "./icons/ErrorIcon.jsx";
 import LoadingIcon from "./icons/LoadingIcon.jsx";

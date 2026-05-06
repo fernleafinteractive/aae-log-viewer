@@ -9,6 +9,7 @@ import UploadField from "./UploadField";
 import InputField from "./InputField";
 import {Timing} from "./TaskTimings";
 import CopyIcon from "./icons/CopyIcon.jsx";
+import {useView} from "../context/ViewContext";
 
 
 cytoscape.use(dagre);
@@ -18,6 +19,7 @@ export default function TaskGraph(props) {
     const {mapping, totalExecutionTime, setMapping} = useLogDataMapping();
     const {data, setTaskGraph} = useTaskGraph();
     const {taskID: selectedTaskID, setTaskID: setSelectedTaskID} = useSelectedTaskID();
+    const {view, setView} = useView();
 
     const [worker, setWorker] = useState(null);
     const [selectedNode, setSelectedNode] = useState(null);
@@ -234,6 +236,7 @@ export default function TaskGraph(props) {
                                             className={"ms-2 p-[0.25rem] text-[0.85rem] text-white rounded-[0.25rem] bg-[#7c7ed9] cursor-pointer"}
                                             onClick={() => {
                                                 setSelectedTaskID(selectedNode.id);
+                                                setView("LOGS");
                                             }}>View Logs
                                         </button>
                                         <button

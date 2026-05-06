@@ -1,9 +1,8 @@
 import {createContext, useContext, useState} from "react";
-import {LogDataType, LogLevel} from "../types/log_types";
 
 type SelectedTaskIDContextType = {
     taskID: String;
-    setTaskID: (logs: String) => void;
+    setTaskID: (id: String) => void;
 }
 
 export const SelectedTaskIDContext = createContext<SelectedTaskIDContextType>(null);

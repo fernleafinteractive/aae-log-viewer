@@ -4,15 +4,17 @@ import {useLogData} from "../context/LogDataContext";
 import {ViewType} from "../types/view_types";
 import UploadField from "./UploadField";
 import {useLogDataMapping} from "../context/LogDataMappingContext";
+import {useView} from "../context/ViewContext";
 
 function isSelectedView(view : ViewType, currentView : ViewType) {
     return view === currentView;
 }
 
-export default function SidebarNavigation({view, setView}) {
+export default function SidebarNavigation() {
 
     const {logs, setLogs} = useLogData();
     const {mapping, totalExecutionTime, setMapping} = useLogDataMapping();
+    const {view, setView} = useView();
 
     const inputWorkerRef = useRef<Worker>();
     const mappingWorkerRef = useRef<Worker>();

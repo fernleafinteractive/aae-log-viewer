@@ -6,6 +6,7 @@ import {ViewType} from "./types/view_types";
 import {useLogDataMapping} from "./context/LogDataMappingContext";
 import TaskTimings from "./components/TaskTimings.jsx";
 import MemoryChart from "./components/MemoryChart";
+import {useView} from "./context/ViewContext";
 
 function getViewByType(type: ViewType) {
 
@@ -24,7 +25,7 @@ function getViewByType(type: ViewType) {
 }
 
 export default function App() {
-    const [view, setView] = useState<ViewType>('LOGS');
+    const {view, setView} = useView();
 
     const [mappingWorker, setMappingWorker] = useState(null);
 
@@ -32,7 +33,7 @@ export default function App() {
         <div className={"px-24 h-[100%]"}>
 
             <div className={"flex gap-x-4"}>
-                <SidebarNavigation view={view} setView={setView}/>
+                <SidebarNavigation />
                 <div className={"h-screen grow flex flex-col"}>
                     {getViewByType(view)}
                 </div>
