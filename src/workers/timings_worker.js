@@ -47,6 +47,12 @@ onmessage = function(e) {
 }
 
 function getTaskExecutionTime(data) {
+    const startedTimeStamp = data.find(d => d.data.task_status === "STARTED");
+    const completedTimeStamp = data.find(d => d.data.task_status === "COMPLETE");
+    if(startedTimeStamp && completedTimeStamp) {
+        return completedTimeStamp.data.timestamp - startedTimeStamp.data.timestamp;
+    }
+
     const timestamps = data.map(d => d.data.timestamp);
     const min = Math.min(...timestamps);
     const max = Math.max(...timestamps);
