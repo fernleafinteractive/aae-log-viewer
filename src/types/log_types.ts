@@ -8,7 +8,7 @@ export type LogDataType = {
 }
 
 export type LogDataMappingContextType = {
-    mapping: Object;
+    mapping: Map<String, []>;
     totalExecutionTime: number;
     setMapping: (data: Object) => void;
 }

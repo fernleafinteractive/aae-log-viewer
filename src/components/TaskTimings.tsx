@@ -12,7 +12,7 @@ import LogTaskStatusRow from "./LogTaskStatusRow.jsx";
 import {formatDuration, stringToColor} from "../utils/log_utils.js";
 import {didTaskFail, isTaskRunning, getTaskExecutionTime} from "../utils/task_utils.js";
 
-export default function TaskTimings({mapping, totalExecutionTime} : {mapping : Map<String, []>}) {
+export default function TaskTimings({mapping, totalExecutionTime} : {mapping : Map<String, []>, totalExecutionTime: number}) {
 
     console.log(mapping);
 

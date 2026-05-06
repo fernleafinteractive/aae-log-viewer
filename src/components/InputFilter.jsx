@@ -1,6 +1,6 @@
 import InputField from "./InputField";
 
-export default function InputFilter({setMessageFilter}) {
+export default function InputFilter({messageFilter, setMessageFilter}) {
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -10,7 +10,7 @@ export default function InputFilter({setMessageFilter}) {
     return (
         <form onSubmit={handleSubmit} className={"ms-4"}>
             <div>
-                <InputField changeCallback={setMessageFilter} placeholder={"Filter by text"} />
+                <InputField changeCallback={setMessageFilter} value={messageFilter} placeholder={"Filter by text"} />
             </div>
         </form>
     )

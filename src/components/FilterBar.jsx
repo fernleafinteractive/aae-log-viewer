@@ -2,7 +2,7 @@ import InputFilter from "./InputFilter.jsx";
 import DropdownFilter from "./DropdownFilter.jsx";
 import UploadIcon from "./icons/UploadIcon.jsx";
 
-export default function FilterBar({logs, statusFilter, setStatusFilter, setTaskFilter, connected, setMessageFilter, logView, setLogView}) {
+export default function FilterBar({logs, statusFilter, setStatusFilter, setTaskFilter, connected, messageFilter, setMessageFilter, logView, setLogView}) {
 
     const filterOptions = [
         {
@@ -62,7 +62,7 @@ export default function FilterBar({logs, statusFilter, setStatusFilter, setTaskF
                     :
                     <></>
             }
-            <InputFilter setMessageFilter={setMessageFilter} />
+            <InputFilter messageFilter={messageFilter} setMessageFilter={setMessageFilter} />
 
             <div className={"ms-4 p-1 flex items-center bg-[#303540] rounded"}>
                 <div className={"rounded-md text-[#b0b3b7] p-1"}>{logs.length} Logs</div>

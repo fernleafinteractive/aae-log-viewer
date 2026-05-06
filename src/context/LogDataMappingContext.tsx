@@ -2,7 +2,7 @@ import {createContext, useContext, useState} from "react";
 import {LogDataMappingContextType} from '../types/log_types';
 
 type MappingInput = {
-    mapping: Object[],
+    mapping: Map<String, []>,
     totalExecutionTime: number
 }
 
@@ -10,7 +10,7 @@ export const LogDataMappingContext = createContext<LogDataMappingContextType>(nu
 
 export const LogDataMappingContextProvider = (props) => {
     const [state, setState] = useState({
-        mapping: [],
+        mapping: new Map<String, []>,
         totalExecutionTime: 0
     })
 
