@@ -6,6 +6,19 @@ export default function MemoryChart() {
     const [state, setState] = useState({
         series: [],
         options: {
+            grid: {
+                show: true,
+                xaxis: {
+                    lines: {
+                        show: false
+                    }
+                },
+                yaxis: {
+                    lines: {
+                        show: false
+                    }
+                }
+            },
             chart: {
                 // height: 350,
                 type: 'line',
@@ -46,6 +59,20 @@ export default function MemoryChart() {
                     shape: 'square',
                     strokeWidth: 0
                 }
+            },
+            xaxis: {
+                labels: {
+                    style: {
+                        colors: "#afb2b6"
+                    }
+                }
+            },
+            yaxis: {
+                labels: {
+                    style: {
+                        colors: "#afb2b6"
+                    }
+                }
             }
         },
     });
@@ -60,9 +87,6 @@ export default function MemoryChart() {
     useEffect(() => {
         const filteredLogs = logs.filter(l => l.data && l.data.memory_info);
         filteredLogs.sort((a, b) => parseInt(a.data.timestamp) - parseInt(b.data.timestamp));
-
-        const unloadedTimestamp = logs.filter(l => l.message.toLowerCase().includes("unloaded dataframe"));
-        unloadedTimestamp.sort((a, b) => parseInt(a.data.timestamp) - parseInt(b.data.timestamp));
 
         const xAxis = [];
         const series = [
@@ -81,17 +105,6 @@ export default function MemoryChart() {
             series[1].data.push((l.data.memory_info.total_memory - l.data.memory_info.available_memory) / 1024 / 1024 / 1024);
         }
 
-        const unloadedSeries = [];
-        for(const t of xAxis) {
-            const f = unloadedTimestamp.filter(l => l.data.timestamp === t);
-            unloadedSeries.push(f.length);
-        }
-
-        series.push({
-            name: "Unloaded event",
-            data: unloadedSeries
-        });
-
         setGraphData({
             xAxis,
             series,
@@ -105,7 +118,6 @@ export default function MemoryChart() {
 
         if(graphData.series.length === 0 || graphData.xAxis.length === 0) return;
 
-
         setState({
             options: {
                 ...state.options,
@@ -116,10 +128,9 @@ export default function MemoryChart() {
                     custom: function({ series, seriesIndex, dataPointIndex, w }) {
                         return (
                             `
-                            <div style="padding: 1rem;">
-                                <div>${series[0][dataPointIndex]} % available memory</div>
-                                <div>${series[1][dataPointIndex]} GB in use</div>
-                                <div>${graphData.data[dataPointIndex].data.task_id}</div>
+                            <div style="padding: 1rem; background-color: #272B34;">
+                                <div style="color: #258FFB;"> <span style="font-weight: bold;">${series[0][dataPointIndex].toFixed(2)}</span>% available memory</div>
+                                <div style="color: #21CA89;"> <span style="font-weight: bold;">${series[1][dataPointIndex].toFixed(2)}</span>GB in use</div>
                             </div>
                             `
                         );
@@ -132,7 +143,7 @@ export default function MemoryChart() {
     }, [graphData]);
 
     return (
-        <div>
+        <div className={"flex flex-col grow p-4 bg-[#272B34] rounded-[0.25rem] overflow-y-auto"}>
             <div id="chart">
                 <Chart options={state.options} series={state.series} type="line" />
             </div>
