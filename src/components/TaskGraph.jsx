@@ -47,6 +47,16 @@ export default function TaskGraph(props) {
         const myWorker = new Worker(new URL(".././workers/task_graph_worker.js", import.meta.url));
 
         myWorker.onmessage = (event) => {
+            const graphData = event.data;
+
+            if(!graphData) return;
+            if(typeof graphData !== "object") return;
+
+            const keys = Object.keys(graphData);
+            if(keys.length === 0) return;
+
+            if(keys[0] !== "elements") return;
+
             setTaskGraph(event.data);
         }
 
